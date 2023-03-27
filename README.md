@@ -14,6 +14,6 @@ No caso em que um argumento não é passado, a Função assume um valor default 
 ```
 let fun soma a b ?(0) = a + b
 ```
-O bloco ```? (0)``` modifica o parâmetro da função.
+O bloco ```?(0)``` modifica o parâmetro da função.
 
 O token ```?``` sinaliza que o parâmetro é opcional e a string ```(0)``` define o valor default assumido caso um valor não seja expressamente informado na chamada da função.
