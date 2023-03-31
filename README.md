@@ -12,8 +12,8 @@ No caso em que um argumento não é passado, a Função assume um valor default 
 ## Escopo do Projeto
 **Estender a Linguagem Funcional 1** apresentada na disciplina para que a declaração de funções ofereça a possibilidade de **tornar um parâmetro opcional**.
 ```
-let fun soma a b ?(0) = a + b
+let fun soma a(0) b(0) = a + b
 ```
-O bloco ```?(0)``` modifica o parâmetro da função.
+O bloco ```(0)``` modifica o parâmetro da função.
 
-O token ```?``` sinaliza que o parâmetro é opcional e a string ```(0)``` define o valor default assumido caso um valor não seja expressamente informado na chamada da função.
+A string ```(0)``` define o valor default assumido caso um valor não seja expressamente informado na chamada da função.
