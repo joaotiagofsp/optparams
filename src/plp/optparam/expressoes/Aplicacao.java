@@ -124,21 +124,21 @@ public class Aplicacao implements Expressao {
 
 		Map<Id, Valor> mapIdValor = new HashMap<Id, Valor>();
 
-		Iterator<? extends Expressao> iterExpressoesValor = expressoesValorReal.iterator();
-		for (ParametroFuncao param : parametrosId) {
-			Expressao exp = null;
-			Valor valorReal = null;
-			// ESSE IF NAO EXISTIA NA IMPLEMENTACAO DE LF1 - FOI INCLUIDO NA IMPLEMENTACAO DE OPTPARAM
-			if (iterExpressoesValor.hasNext()) {
-				exp = iterExpressoesValor.next();
-				valorReal = exp.avaliar(ambiente);
-				mapIdValor.put(param.getId(), valorReal);
-			} else {
-				exp = param.getValorDefault();
-				valorReal = exp.avaliar(ambiente);
-				mapIdValor.put(param.getId(), valorReal);
+		if (expressoesValorReal == null) {
+			for (ParametroFuncao param : parametrosId) {
+				mapIdValor.put(param.getId(), param.getValorDefault().avaliar(ambiente));
+			}
+		} else {
+			Iterator<? extends Expressao> iterExpressoesValor = expressoesValorReal.iterator();
+			for (ParametroFuncao param : parametrosId) {
+				if (iterExpressoesValor.hasNext()) {
+					mapIdValor.put(param.getId(), iterExpressoesValor.next().avaliar(ambiente));
+				} else {
+					mapIdValor.put(param.getId(), param.getValorDefault().avaliar(ambiente));
+				}
 			}
 		}
+
 		return mapIdValor;
 	}
 

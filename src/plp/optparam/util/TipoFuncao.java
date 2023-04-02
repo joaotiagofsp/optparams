@@ -113,10 +113,8 @@ public class TipoFuncao implements Tipo {
 	 * @return
 	 */
 	private boolean checkArgumentListSize(List<? extends Expressao> parametrosFormais) {
-
-		// return getDominio().size() == parametrosFormais.size();
-		// AQUI AINDA CABE MELHORIAS
-		return true;
+		// ALTERADO PARA PERMITIR QUE A FUNÇÃO RECEBA MENOS ARGUMENTOS DO QUE CONSTA NA DEFINIÇÃO
+		return getDominio().size() >= parametrosFormais.size();
 	}
 
 	private boolean checkArgumentTypes(AmbienteCompilacao ambiente, List<? extends Expressao> parametrosFormais)
@@ -125,14 +123,16 @@ public class TipoFuncao implements Tipo {
 
 		Iterator<Tipo> it = getDominio().iterator();
 		Tipo tipoArg;
-		for (Expressao valorReal : parametrosFormais) {
-
-			result &= valorReal.checaTipo(ambiente);
-
-			tipoArg = valorReal.getTipo(ambiente);
-			Tipo tipoDom = it.next();
-
-			result &= tipoArg.eIgual(tipoDom);
+		if (parametrosFormais != null) {
+			for (Expressao valorReal : parametrosFormais) {
+	
+				result &= valorReal.checaTipo(ambiente);
+	
+				tipoArg = valorReal.getTipo(ambiente);
+				Tipo tipoDom = it.next();
+	
+				result &= tipoArg.eIgual(tipoDom);
+			}
 		}
 		return result;
 	}

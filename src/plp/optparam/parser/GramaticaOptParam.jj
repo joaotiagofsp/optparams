@@ -458,25 +458,28 @@ Expressao PExpCondicional() :
 
 Expressao PAplicacao() :
 {
-  List expressoes = null;
+  List expressoes = new ArrayList();
   Expressao expressao;
   Id id;
 }
 {
+  id = PId() < LPAREN >
   (
-    id = PId() < LPAREN > expressao = PExpressao()
-    {
-      expressoes = new ArrayList();
-      expressoes.add(expressao);
-    }
-    (
-      < COMMA > expressao = PExpressao()
-      {
-        expressoes.add(expressao);
-      }
-    )*
-    < RPAREN >
-  )
+    expressao = PExpressao()
+	{
+	  expressoes.add(expressao);
+	}
+	|
+	( < COMMA >
+	  | 
+	  expressao = PExpressao()
+	  {
+	    expressoes.add(expressao);
+	  }
+	)
+	
+  )*
+  < RPAREN >
   {
     return new Aplicacao(id, expressoes);
   }
