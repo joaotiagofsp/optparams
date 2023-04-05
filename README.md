@@ -60,3 +60,84 @@ public class ParametroFuncao {
 ```
 3. Modificação nas classes ```DefFuncao```, ```TipoFuncao```, ```Aplicacao``` e ```DecFuncao```
 4. Modificação das regras de produção ```PListaId()```, ```PDeclFuncao()``` e ```PAplicacao()```
+
+```
+List PListaId() :
+{
+  Id id;
+  ParametroFuncao param;
+  Valor valorDefault;
+  List < ParametroFuncao > retorno = null;
+}
+{
+  (
+    ///////////////////////////////////////////////////////////////////////////////
+    // ALTERADA A ESTRUTURA DA DECLARACAO DA FUNCAO PARA INCLUIR VALORES DEFAULT //
+    ///////////////////////////////////////////////////////////////////////////////
+    id = PId() < LPAREN > valorDefault = PValor() < RPAREN >
+    {
+      if (retorno == null)
+      {
+        retorno = new ArrayList < ParametroFuncao > ();
+        retorno.add(new ParametroFuncao(id, valorDefault));
+      }
+      else
+      {
+        retorno.add(new ParametroFuncao(id, valorDefault));
+      }
+    }
+  )*
+  {
+    return retorno;
+  }
+}
+```
+```
+DeclaracaoFuncional PDeclFuncao() :
+{
+  Id id;
+  Expressao expressao;
+  DeclaracaoFuncional retorno;
+  /////////////////////////////////////////////////
+  ///   ALTERADO O TIPO DOS ELEMENTOS DA LISTA  ///
+  /////////////////////////////////////////////////
+  List < ParametroFuncao > lista;
+}
+{
+  (
+    < FUNC > id = PId() lista = PListaId() < ASSIGN > expressao = PExpressao()
+  )
+  {
+    return new DecFuncao(id, lista, expressao);
+  }
+}
+```
+```
+Expressao PAplicacao() :
+{
+  List expressoes = null;
+  Expressao expressao;
+  Id id;
+}
+{
+  id = PId() < LPAREN >
+  (
+     expressao = PExpressao()
+    {
+      expressoes = new ArrayList();
+      expressoes.add(expressao);
+    }
+    (
+      < COMMA > expressao = PExpressao()
+      {
+        expressoes.add(expressao);
+      }
+    )*
+    
+  )*
+  < RPAREN >
+  {
+    return new Aplicacao(id, expressoes);
+  }
+}
+```
