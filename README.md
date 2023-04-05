@@ -21,7 +21,7 @@ A string ```(0)``` define o valor default assumido caso um valor não seja expre
 ## Extensões realizadas em LF1
 1. Implementação da classe ```ParametroFuncao```
 
-```
+```java
 public class ParametroFuncao {
 	private Id id;
 	private Valor valorDefault;
@@ -59,7 +59,7 @@ public class ParametroFuncao {
 }
 ```
 3. Modificação nas classes ```DefFuncao```, ```TipoFuncao```, ```Aplicacao``` e ```DecFuncao```
-```
+```java
 public class DefFuncao {
 	
 	// TIPO DA LISTA ATUALIZADO
@@ -136,7 +136,7 @@ public class DefFuncao {
 	}
 }
 ```
-```
+```java
 public class TipoFuncao implements Tipo {
 
 	private List<Tipo> dominio;
@@ -289,7 +289,7 @@ public class TipoFuncao implements Tipo {
 
 }
 ```
-```
+```java
 public class Aplicacao implements Expressao {
 
 	private Id func;
@@ -429,7 +429,7 @@ public class Aplicacao implements Expressao {
 	}
 }
 ```
-```
+```java
 public class DecFuncao implements DeclaracaoFuncional {
 
 	private Id id;
