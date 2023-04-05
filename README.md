@@ -63,18 +63,18 @@ public class ParametroFuncao {
 public class DefFuncao {
 	
 	// TIPO DA LISTA ATUALIZADO
-	*protected List<ParametroFuncao> args;*
+	protected List<ParametroFuncao> args;
 
 	protected Expressao exp;
 
-	public DefFuncao(*List<ParametroFuncao> args*, Expressao exp) {
+	public DefFuncao(List<ParametroFuncao> args, Expressao exp) {
 		this.args = args;
 		this.exp = exp;
 	}
 
-	*public List<ParametroFuncao> getListaParametros() {
+	public List<ParametroFuncao> getListaParametros() {
 		return args;
-	}*
+	}
 
 	public Expressao getExp() {
 		return exp;
@@ -126,9 +126,9 @@ public class DefFuncao {
 	}
 
 	public DefFuncao clone() {
-		*List<ParametroFuncao>* novaLista = new ArrayList<*ParametroFuncao*>(this.args.size());
+		List<ParametroFuncao> novaLista = new ArrayList<ParametroFuncao>(this.args.size());
 
-		for (*ParametroFuncao* arg : this.args) {
+		for (ParametroFuncao arg : this.args) {
 			novaLista.add(arg.clone());
 		}
 
@@ -231,7 +231,6 @@ public class TipoFuncao implements Tipo {
 	 * @param parametrosFormais
 	 * @return
 	 */
-	*
 	private boolean checkArgumentListSize(List<? extends Expressao> parametrosFormais) {
 
 		// return getDominio().size() == parametrosFormais.size();
@@ -257,7 +256,7 @@ public class TipoFuncao implements Tipo {
 			}
 		}
 		return result;
-	}*
+	}
 
 	public boolean checaTipo(AmbienteCompilacao ambiente, List<? extends Expressao> parametrosFormais) {
 		boolean result = checkArgumentListSize(parametrosFormais) && checkArgumentTypes(ambiente, parametrosFormais);
