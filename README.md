@@ -21,3 +21,4 @@ A string ```(0)``` define o valor default assumido caso um valor não seja expre
 ## Extensões realizadas em LF1
 1. Implementação da classe ```ParametroFuncao```
 2. Modificação nas classes ```DefFuncao```, ```TipoFuncao```, ```Aplicacao``` e ```DecFuncao```
+3. Modificação das regras de produção ```PListaId()```, ```PDeclFuncao()``` e ```PAplicacao()```
