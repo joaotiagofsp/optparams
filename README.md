@@ -19,5 +19,5 @@ O bloco ```(0)``` modifica o parâmetro da função.
 A string ```(0)``` define o valor default assumido caso um valor não seja expressamente informado na chamada da função.
 
 ## Extensões realizadas em LF1
-a. Implementação da classe ```ParametroFuncao```
-b. Modificação nas classes ```DefFuncao```, ```TipoFuncao```, ```Aplicacao``` e ```DecFuncao```
+1. Implementação da classe ```ParametroFuncao```
+2. Modificação nas classes ```DefFuncao```, ```TipoFuncao```, ```Aplicacao``` e ```DecFuncao```
