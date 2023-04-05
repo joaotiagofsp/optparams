@@ -20,5 +20,43 @@ A string ```(0)``` define o valor default assumido caso um valor não seja expre
 
 ## Extensões realizadas em LF1
 1. Implementação da classe ```ParametroFuncao```
-2. Modificação nas classes ```DefFuncao```, ```TipoFuncao```, ```Aplicacao``` e ```DecFuncao```
-3. Modificação das regras de produção ```PListaId()```, ```PDeclFuncao()``` e ```PAplicacao()```
+
+```
+public class ParametroFuncao {
+	private Id id;
+	private Valor valorDefault;
+
+	public ParametroFuncao(Id id, Valor valorDefault) {
+		this.id = id;
+		this.valorDefault = valorDefault;
+	}
+
+	@Override
+	public String toString() {
+		return "ParametroFuncao [id=" + id + ", valorDefault=" + valorDefault + "]";
+	}
+
+	public Id getId() {
+		return id;
+	}
+
+	public void setId(Id id) {
+		this.id = id;
+	}
+
+	public Valor getValorDefault() {
+		return valorDefault;
+	}
+
+	public void setValorDefault(Valor valorDefault) {
+		this.valorDefault = valorDefault;
+	}
+	
+	public ParametroFuncao clone() {
+		return this;
+	}
+
+}
+```
+3. Modificação nas classes ```DefFuncao```, ```TipoFuncao```, ```Aplicacao``` e ```DecFuncao```
+4. Modificação das regras de produção ```PListaId()```, ```PDeclFuncao()``` e ```PAplicacao()```
