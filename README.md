@@ -232,10 +232,8 @@ public class TipoFuncao implements Tipo {
 	 * @return
 	 */
 	private boolean checkArgumentListSize(List<? extends Expressao> parametrosFormais) {
-
-		// return getDominio().size() == parametrosFormais.size();
-		// AQUI AINDA CABE MELHORIAS
-		return true;
+		// ALTERADO PARA PERMITIR QUE A FUNÇÃO RECEBA MENOS ARGUMENTOS DO QUE CONSTA NA DEFINIÇÃO
+		return getDominio().size() >= parametrosFormais.size();
 	}
 
 	private boolean checkArgumentTypes(AmbienteCompilacao ambiente, List<? extends Expressao> parametrosFormais)
