@@ -10,13 +10,13 @@ Um Função com parâmetros opcionais deve ser executada mesmo que parte dos seu
 No caso em que um argumento não é passado, a Função assume um valor default e segue a sua execução.
 
 ## Escopo do Projeto
-**Estender a Linguagem Funcional 1** apresentada na disciplina para que a declaração de funções ofereça a possibilidade de **tornar um parâmetro opcional**.
-```
-let fun soma a(0) b(0) = a + b
-```
-O bloco ```(0)``` modifica o parâmetro da função.
+**Estender a Linguagem Funcional 1** apresentada na disciplina para que a declaração de funções ofereça a possibilidade de **tornar um parâmetro opcional e indicar um valor default para quando não for informado**.
 
-A string ```(0)``` define o valor default assumido caso um valor não seja expressamente informado na chamada da função.
+```
+let fun soma a(1) b(2) = a + b
+```
+
+Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define o valor default caso um valor não seja expressamente informado na chamada da função.
 
 ## Extensões realizadas em LF1
 1. Implementação da classe ```ParametroFuncao```
