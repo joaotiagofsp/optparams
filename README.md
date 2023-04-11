@@ -16,7 +16,7 @@ No caso em que um argumento não é passado, a Função assume um valor default 
 let fun soma a(1) b(2) = a + b
 ```
 
-Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define o valor default caso um valor não seja expressamente informado na chamada da função.
+Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e definem o valor default caso um valor não seja expressamente informado na chamada da função.
 
 ## Extensões realizadas em LF1
 1. Implementação da classe ```ParametroFuncao```
