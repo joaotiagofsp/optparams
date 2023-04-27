@@ -44,7 +44,6 @@ ExpBinaria ::= Expressao "+" Expressao
 	| Expressao "==" Expressao
 	| Expressao "++" Expressao
 
-
 ExpDeclaracao ::= "let" DeclaracaoFuncional "in" Expressao
 
 DeclaracaoFuncional ::= DecVariavel
