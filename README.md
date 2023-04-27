@@ -19,18 +19,17 @@ let fun soma a(1) b(2) = a + b
 Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e definem o valor default caso um valor não seja expressamente informado na chamada da função.
 
 ## BNF
+```
 Programa ::= Expressao
 
 Expressao ::= Valor
+	| ExpUnaria
+	| ExpBinaria
+	| ExpDeclaracao
+	| Id
+	| Aplicacao
+	| IfThenElse
 
-| ExpUnaria
-| ExpBinaria
-| ExpDeclaracao
-| Id
-| Aplicacao
-| IfThenElse
-
- 
 
 Valor ::= ValorConcreto
 
@@ -39,21 +38,18 @@ ValorConcreto ::= ValorInteiro | ValorBooleano | ValorString
 ExpUnaria ::= "-" Expressao | "not" Expressao | "length" Expressao
 
 ExpBinaria ::= Expressao "+" Expressao
+	| Expressao "-" Expressao
+	| Expressao "and" Expressao
+	| Expressao "or" Expressao
+	| Expressao "==" Expressao
+	| Expressao "++" Expressao
 
-| Expressao "-" Expressao
-| Expressao "and" Expressao
-| Expressao "or" Expressao
-| Expressao "==" Expressao
-| Expressao "++" Expressao
-
- 
 
 ExpDeclaracao ::= "let" DeclaracaoFuncional "in" Expressao
 
 DeclaracaoFuncional ::= DecVariavel
-
-| DecFuncao
-| DecComposta
+	| DecFuncao
+	| DecComposta
 
 DecVariavel ::= "var" Id "=" Expressao
 
@@ -68,7 +64,7 @@ Aplicacao:= Id"(" ListExp ")"
 ListExp ::= Expressao  |  Expressao, ListExp
 
 IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
-
+```
 
 ## Extensões realizadas em LF1
 1. Implementação da classe ```ParametroFuncao```
