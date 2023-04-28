@@ -34,22 +34,27 @@ Expressao ::= Valor
 
 Valor ::= ValorConcreto
 
-ValorConcreto ::= ValorInteiro | ValorBooleano | ValorString
+ValorConcreto ::= ValorInteiro 
+		| ValorBooleano 
+		| ValorString
+      --->>	| ValorFuncao
 
-ExpUnaria ::= "-" Expressao | "not" Expressao | "length" Expressao
+ExpUnaria ::= "-" Expressao 
+		| "not" Expressao 
+		| "length" Expressao
 
 ExpBinaria ::= Expressao "+" Expressao
-	| Expressao "-" Expressao
-	| Expressao "and" Expressao
-	| Expressao "or" Expressao
-	| Expressao "==" Expressao
-	| Expressao "++" Expressao
+		| Expressao "-" Expressao
+		| Expressao "and" Expressao
+		| Expressao "or" Expressao
+		| Expressao "==" Expressao
+		| Expressao "++" Expressao
 
 ExpDeclaracao ::= "let" DeclaracaoFuncional "in" Expressao
 
 DeclaracaoFuncional ::= DecVariavel
-	| DecFuncao
-	| DecComposta
+			| DecFuncao
+			| DecComposta
 
 DecVariavel ::= "var" Id "=" Expressao
 
@@ -57,11 +62,16 @@ DecFuncao ::= "fun" ListId "=" Expressao
 
 DecComposta ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
-ListId ::= Id  |  Id ListId
+ListId ::= Id  
+	|  Id ListId
 
 Aplicacao:= Id"(" ListExp ")"
 
-ListExp ::= Expressao  |  Expressao, ListExp
+ListParametro ::= Parametro  <<---
+		|  Parametro ListParametro
+
+ListExp ::= Expressao  
+	|  Expressao, ListExp
 
 IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
 ```
