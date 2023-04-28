@@ -39,6 +39,8 @@ ValorConcreto ::= ValorInteiro
 		| ValorString
       --->>	| ValorFuncao
 
+ValorFuncao ::= "fn" ListParametro "." Expressao   <<---
+
 ExpUnaria ::= "-" Expressao 
 		| "not" Expressao 
 		| "length" Expressao
