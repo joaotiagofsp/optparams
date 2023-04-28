@@ -39,7 +39,7 @@ ValorConcreto ::= ValorInteiro
 		| ValorString
       		| ValorFuncao		<<--- ALTERAÇÃO
 
-ValorFuncao ::= "fn" ListParametro "." Expressao		<<--- ALTERAÇÃO
+ValorFuncao ::= "fn" ListParametro "." Expressao	<<--- ALTERAÇÃO
 
 ExpUnaria ::= "-" Expressao 
 		| "not" Expressao 
@@ -60,7 +60,7 @@ DeclaracaoFuncional ::= DecVariavel
 
 DecVariavel ::= "var" Id "=" Expressao
 
-DecFuncao ::= "fun" ListId "=" Expressao
+DecFuncao ::= "fun" ListParametro "=" Expressao		<<--- ALTERAÇÃO
 
 DecComposta ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
