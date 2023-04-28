@@ -37,9 +37,9 @@ Valor ::= ValorConcreto
 ValorConcreto ::= ValorInteiro 
 		| ValorBooleano 
 		| ValorString
-      --->>	| ValorFuncao
+      		| ValorFuncao		<<--- ALTERAÇÃO
 
-ValorFuncao ::= "fn" ListParametro "." Expressao   <<---
+ValorFuncao ::= "fn" ListParametro "." Expressao		<<--- ALTERAÇÃO
 
 ExpUnaria ::= "-" Expressao 
 		| "not" Expressao 
@@ -69,7 +69,7 @@ ListId ::= Id
 
 Aplicacao:= Id"(" ListExp ")"
 
-ListParametro ::= Parametro  <<---
+ListParametro ::= Parametro		<<--- ALTERAÇÃO
 		|  Parametro ListParametro
 
 ListExp ::= Expressao  
