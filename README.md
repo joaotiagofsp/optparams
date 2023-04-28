@@ -64,6 +64,9 @@ DecFuncao ::= "fun" ListParametro "=" Expressao		<<--- ALTERAÇÃO
 
 DecComposta ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
+Parametro ::= ParametroObrigatorio		<<--- ALTERAÇÃO 
+		| ParametroOpcional
+
 ListId ::= Id  
 	|  Id ListId
 
