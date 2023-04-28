@@ -49,7 +49,7 @@ Valor ::= ValorConcreto
 ValorConcreto ::= ValorInteiro 
 		| ValorBooleano 
 		| ValorString
-      		| ValorFuncao		<<--- ALTERAÇÃO
+      		| ValorFuncao			<<----------- ALTERAÇÃO
 
 ValorFuncao ::= "fn" ListParametro "." Expressao	<<--- ALTERAÇÃO
 
@@ -59,16 +59,16 @@ DeclaracaoFuncional ::= DecVariavel
 
 DecVariavel ::= "var" Id "=" Expressao
 
-DecFuncao ::= "fun" ListParametro "=" Expressao		<<--- ALTERAÇÃO
+DecFuncao ::= "fun" ListParametro "=" Expressao	<<----------- ALTERAÇÃO
 
 DecComposta ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
-Parametro ::= ParametroObrigatorio		<<--- ALTERAÇÃO 
+Parametro ::= ParametroObrigatorio	<<------------------- ALTERAÇÃO 
 		| ParametroOpcional
 
-ParametroObrigatorio ::= Id
+ParametroObrigatorio ::= Id	<<--------------------------- ALTERAÇÃO
 
-ParametroOpcional ::= Id "?" "(" Expressao ")"
+ParametroOpcional ::= Id "?" "(" Expressao ")"	<<----------- ALTERAÇÃO
 
 ListId ::= Id  
 	|  Id ListId
@@ -78,7 +78,7 @@ Aplicacao:= Id"(" ListExp ")"
 ListExp ::= Expressao  
 	|  Expressao, ListExp
 
-ListParametro ::= Parametro		<<--- ALTERAÇÃO
+ListParametro ::= Parametro	<<--------------------------- ALTERAÇÃO
 		|  Parametro ListParametro
 
 IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
