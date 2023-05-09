@@ -121,6 +121,7 @@ TOKEN : /* TOKENS DE FUNCIONAL 1 */
 | < THEN : "then" >
 | < ELSE : "else" >
 | < FUNC : "fun" >
+| < FN   : "fn" >
 }
 
 TOKEN : /* LITERALS */
@@ -248,6 +249,18 @@ Valor PValorString() :
   }
 }
 
+Valor PValorFuncao() :
+{
+  List lista = null;
+  Expressao expressao;
+}
+{
+  < FN > lista = PListaParametro() < DOT > expressao = PExpressao()
+  {
+    return new ValorFuncao(lista, expressao);
+  }
+}
+
 Valor PValor() :
 {
   Valor retorno;
@@ -257,6 +270,7 @@ Valor PValor() :
     retorno = PValorInteiro()
   | retorno = PValorBooleano()
   | retorno = PValorString()
+  | retorno = PValorFuncao()
   )
   {
     return retorno;
@@ -384,17 +398,14 @@ DeclaracaoFuncional PDeclFuncao() :
   Id id;
   Expressao expressao;
   DeclaracaoFuncional retorno;
-  /////////////////////////////////////////////////
-  ///   ALTERADO O TIPO DOS ELEMENTOS DA LISTA  ///
-  /////////////////////////////////////////////////
-  List < ParametroFuncao > lista;
+  List lista;
 }
 {
   (
-    < FUNC > id = PId() lista = PListaId() < ASSIGN > expressao = PExpressao()
+    < FUNC > id = PId() lista = PListaParametro() < ASSIGN > expressao = PExpressao()
   )
   {
-    return new DecFuncao(id, lista, expressao);
+    return new DecFuncao(id, new ValorFuncao(lista, expressao));
   }
 }
 
@@ -450,7 +461,8 @@ Expressao PExpCondicional() :
   Expressao expCond, expThen, expElse;
 }
 {
-  < IF > expCond = PExpressao() < THEN > expThen = PExpressao() < ELSE > expElse = PExpressao()
+  < IF > expCond = PExpressao() < THEN > expThen = PExpressao()
+  < ELSE > expElse = PExpressao()
   {
     return new IfThenElse(expCond, expThen, expElse);
   }
@@ -458,30 +470,129 @@ Expressao PExpCondicional() :
 
 Expressao PAplicacao() :
 {
-  List expressoes = new ArrayList();
-  Expressao expressao;
   Id id;
+  List lista = null;
 }
 {
-  id = PId() < LPAREN >
+  
   (
-    expressao = PExpressao()
-	{
-	  expressoes.add(expressao);
-	}
-	|
-	( < COMMA >
-	  | 
-	  expressao = PExpressao()
-	  {
-	    expressoes.add(expressao);
-	  }
-	)
-	
-  )*
-  < RPAREN >
+    LOOKAHEAD(PId() < LPAREN > < RPAREN >)
+    id = PId() < LPAREN > < RPAREN >
+  | id = PId() < LPAREN > lista = PListaExpr() < RPAREN >
+  )
   {
-    return new Aplicacao(id, expressoes);
+    if (lista == null)
+    {
+		lista = new ArrayList<Parametro>();
+    }
+    
+    return new Aplicacao(id, lista);
+  }
+}
+
+
+/**
+* Parametro ::= ParametroObrigatorio | ParametroOpcional
+**/
+
+Parametro PParametro():
+{
+  Parametro param;
+}
+{
+	(
+	  LOOKAHEAD(PParametroOpcional())
+      param = PParametroOpcional() |
+      LOOKAHEAD(PParametroObrigatorio())
+      param = PParametroObrigatorio()
+	)
+	{
+		return param;
+	}
+}
+
+/**
+* ParametroObrigatorio ::= Id
+**/
+
+Parametro PParametroObrigatorio() :
+{
+  Id paramId;
+}
+{
+  paramId = PId()
+  {
+    return new ParametroObrigatorio(paramId);
+  }
+}
+
+/**
+* ParametroOpcional ::= Id "?" "(" Expressao ")"
+**/
+
+Parametro PParametroOpcional() :
+{
+  Id paramId;
+  Expressao valorPadrao;
+}
+{
+  paramId = PId() < HOOK > < LPAREN > valorPadrao = PExpressao() < RPAREN >
+  {
+    return new ParametroOpcional(paramId, valorPadrao);
+  }
+}
+
+/**
+* Armazena a lista de parâmetros, que podem ser parâmetros obrigatórios ou opcionais. 
+* PListaParametro ::= Parametro  |  Parametro  ListParametroOpcional
+*/
+
+List PListaParametro() :
+{
+  List retorno = null;
+  Parametro param;
+}
+{
+  (
+    param = PParametro()    
+    {
+      if (retorno == null)
+      {
+        retorno = new ArrayList();
+        retorno.add(param);
+      }
+      else
+      {
+        retorno.add(param);
+      }
+    }
+  )+
+  {
+    return retorno;
+  }
+}
+
+List PListaExpr() :
+{
+  List retorno = null;
+  Expressao expr;
+}
+{
+  (
+    expr = PExpressao()
+    {
+      retorno = new ArrayList();
+      retorno.add(expr);
+    }
+    (
+      < COMMA > expr = PExpressao()
+      {
+        retorno.add(expr);
+      }
+    )*
+  )
+  {
+    return retorno;
   }
 }
 
@@ -514,6 +625,8 @@ Expressao PExpUnaria() :
 Expressao PExpBinaria() :
 {
   Expressao retorno, param2;
+  Id id;
+  List list = null;
 }
 {
   (
@@ -523,6 +636,11 @@ Expressao PExpBinaria() :
       {
         retorno = new ExpEquals(retorno, param2);
       }
+    | 
+      < LPAREN > [ list = PListaExpr() ] < RPAREN >
+      {
+        retorno = new Aplicacao((Expressao) retorno, list);
+      }
     )*
   )
   {
@@ -530,9 +648,12 @@ Expressao PExpBinaria() :
   }
 }
 
+
 Expressao PExpBinaria2() :
 {
   Expressao retorno, param2;
+  Id id;
+  List list = null;
 }
 {
   (
@@ -542,15 +663,18 @@ Expressao PExpBinaria2() :
       {
         retorno = new ExpSoma(retorno, param2);
       }
-    | < MINUS > param2 = PExpBinaria3()
+    | 
+      < MINUS > param2 = PExpBinaria3()
       {
         retorno = new ExpSub(retorno, param2);
       }
-    | < OR > param2 = PExpBinaria3()
+    | 
+      < OR > param2 = PExpBinaria3()
       {
         retorno = new ExpOr(retorno, param2);
       }
-    | < CONCAT > param2 = PExpBinaria3()
+    | 
+      < CONCAT > param2 = PExpBinaria3()
       {
         retorno = new ExpConcat(retorno, param2);
       }
@@ -564,6 +688,8 @@ Expressao PExpBinaria2() :
 Expressao PExpBinaria3() :
 {
   Expressao retorno, param2;
+  Id id;
+  List list = null;
 }
 {
   (
@@ -576,6 +702,7 @@ Expressao PExpBinaria3() :
     )*
   )
   {
+    //System.out.println("ExpressaoBinaria=" + retorno);
     return retorno;
   }
 }
