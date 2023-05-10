@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd"
+	name="Apache Maven">
+
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>2.0.0-M6</version>
+	</skin>
+
+	<bannerLeft>
+		<name>${project.name}</name>
+		<src>https://portal.cin.ufpe.br/wp-content/uploads/2020/07/HC-1.png</src>
+		<height>80px</height>
+	</bannerLeft>
+
+	<custom>
+		<fluidoSkin>
+			<sideBarEnabled>true</sideBarEnabled>
+			<googlePlusOne />
+		</fluidoSkin>
+	</custom>
+
+	<edit>${project.scm.url}</edit>
+
+	<body>
+		<breadcrumbs>
+			<item name="Ref" href="../" />
+			<item name="Maven ${project.version}" href="./" />
+		</breadcrumbs>
+
+		<menu name="Overview">
+			<item name="Projeto" href="projeto.html" />
+			<item name="BNF" href="bnf.html" />
+			<item name="Gramática JavaCC" href="jjdoc/index.html" />
+		</menu>
+		
+		<menu name="Development">
+			<item name="Javadocs" href="apidocs/index.html" />
+			<item name="Github project" href="https://github.com/joaotiagofsp/optparams" />
+		</menu>
+
+		<menu ref="modules" />
+		<menu ref="reports" />
+		
+	</body>
+</project>

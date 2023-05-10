@@ -10,7 +10,7 @@ import plp.le2.memoria.AmbienteExecucao;
 
 /**
  * Modificado para implementar a interface Valor
- * @author Cleber Moura <ctm@cin.ufpe.br>
+ * @author <a href="mailto:ctm@cin.ufpe.br">Cleber Moura</a>
  */
 public class ValorIrredutivel implements Valor {
 
