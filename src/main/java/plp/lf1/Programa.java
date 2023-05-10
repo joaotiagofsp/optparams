@@ -11,7 +11,7 @@ import plp.le2.memoria.ContextoExecucao;
 
 /**
  * Modificado para instanciar o AmbienteExecucao
- * @author Cleber Moura <ctm@cin.ufpe.br>
+ * @author <a href="mailto:ctm@cin.ufpe.br">Cleber Moura</a>
  */
 public class Programa {
 
