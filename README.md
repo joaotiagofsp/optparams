@@ -21,8 +21,8 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 ## BNF
 [Programa](src/main/java/plp/lf1/Programa.java) ::= Expressao
 
-[Expressao](src/main/java/plp/le1/expressoes/Expressao.java) ::= Valor &nbsp;
-	| ExpUnaria &nbsp;
+[Expressao](src/main/java/plp/le1/expressoes/Expressao.java) ::= Valor <br />
+	| ExpUnaria <br />
 	| ExpBinaria &nbsp;
 	| ExpDeclaracao &nbsp;
 	| Id &nbsp;
