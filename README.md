@@ -19,7 +19,7 @@ let fun soma a(1) b(2) = a + b
 Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e definem o valor default caso um valor não seja expressamente informado na chamada da função.
 
 ## BNF
-[Programa](src/main/java/plp/lf1/Programa.java) ::= <font color=\"red\">Expressao</font>
+[Programa](src/main/java/plp/lf1/Programa.java) ::= Expressao
 
 [Expressao](src/main/java/plp/le1/expressoes/Expressao.java) ::= Valor <br />
 >	| ExpUnaria <br />
@@ -68,16 +68,16 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 
 [ParametroOpcional](src/main/java/plp/le1/expressoes/ParametroOpcional.java) ::= Id "?" "(" Expressao ")"	<<----------- ALTERAÇÃO
 
-ListId ::= Id  <br />
->	|  Id ListId
+ListId ::= Id <br />
+>	| Id ListId
 
 [Aplicacao](src/main/java/plp/optparam/expressoes/Aplicacao.java) ::= Id"(" ListExp ")"
 
-ListExp ::= Expressao  <br />
->	|  Expressao, ListExp
+ListExp ::= Expressao <br />
+>	| Expressao, ListExp
 
 ListParametro ::= Parametro	<<--------------------------- ALTERAÇÃO <br />
->	|  Parametro ListParametro
+>	| Parametro ListParametro
 
 IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
 
