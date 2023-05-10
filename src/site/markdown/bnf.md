@@ -1,28 +1,28 @@
 ## BNF
-[Programa](src/main/java/plp/lf1/Programa.java) ::= Expressao
+[Programa](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/Programa.java) ::= Expressao
 
-[Expressao](src/main/java/plp/le1/expressoes/Expressao.java) ::= Valor <br />
+[Expressao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Expressao.java) ::= Valor <br />
 >	| ExpUnaria <br />
 >	| ExpBinaria <br />
 >	| ExpDeclaracao <br />
->	| [Id](src/main/java/plp/le2/expressoes/Id.java) <br />
+>	| [Id](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le2/expressoes/Id.java) <br />
 >	| Aplicacao <br />
 >	| IfThenElse <br />
 
-[ExpUnaria](src/main/java/plp/le1/expressoes/ExpUnaria.java) ::= "-" Expressao <br />
+[ExpUnaria](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ExpUnaria.java) ::= "-" Expressao <br />
 >	| "not" Expressao <br />
 >	| "length" Expressao <br />
 
-[ExpBinaria](src/main/java/plp/le1/expressoes/ExpBinaria.java) ::= Expressao "+" Expressao <br />
+[ExpBinaria](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ExpBinaria.java) ::= Expressao "+" Expressao <br />
 >	| Expressao "-" Expressao <br />
 >	| Expressao "and" Expressao <br />
 >	| Expressao "or" Expressao <br />
 >	| Expressao "==" Expressao <br />
 >	| Expressao "++" Expressao <br />
 
-[ExpDeclaracao](src/main/java/plp/lf1/expressoes/ExpDeclaracao.java) ::= "let" DeclaracaoFuncional "in" Expressao
+[ExpDeclaracao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/ExpDeclaracao.java) ::= "let" DeclaracaoFuncional "in" Expressao
 
-[Valor](src/main/java/plp/le1/expressoes/Valor.java) ::= ValorConcreto
+[Valor](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Valor.java) ::= ValorConcreto
 
 [ValorConcreto](src/main/java/plp/le1/expressoes/ValorConcreto.java) ::= [ValorInteiro](src/main/java/plp/le1/expressoes/ValorInteiro.java) <br />
 >	| [ValorBooleano](src/main/java/plp/le1/expressoes/ValorBooleano.java) <br />
