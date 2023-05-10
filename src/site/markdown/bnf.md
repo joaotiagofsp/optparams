@@ -35,23 +35,23 @@
 >	| DecFuncao <br />
 >	| DecComposta
 
-[DecVariavel](src/main/java/plp/lf1/expressoes/DecVariavel.java) ::= "var" Id "=" Expressao
+[DecVariavel](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/DecVariavel.java) ::= "var" Id "=" Expressao
 
-[DecFuncao](src/main/java/plp/optparam/expressoes/DecFuncao.java) ::= "fun" ListParametro "=" Expressao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
+[DecFuncao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/optparam/expressoes/DecFuncao.java) ::= "fun" ListParametro "=" Expressao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
 
-[DecComposta](src/main/java/plp/lf1/expressoes/DecComposta.java) ::= DeclaracaoFuncional "," DeclaracaoFuncional
+[DecComposta](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/DecComposta.java) ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
-[Parametro](src/main/java/plp/le1/expressoes/Parametro.java) ::= ParametroObrigatorio <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/> <br />
+[Parametro](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Parametro.java) ::= ParametroObrigatorio <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/> <br />
 >	| ParametroOpcional
 
-[ParametroObrigatorio](src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) ::= Id <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/> 
+[ParametroObrigatorio](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) ::= Id <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/> 
 
-[ParametroOpcional](src/main/java/plp/le1/expressoes/ParametroOpcional.java) ::= Id "?" "(" Expressao ")"	<img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
+[ParametroOpcional](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ParametroOpcional.java) ::= Id "?" "(" Expressao ")"	<img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
 
 ListId ::= Id <br />
 >	| Id ListId
 
-[Aplicacao](src/main/java/plp/optparam/expressoes/Aplicacao.java) ::= Id"(" ListExp ")"
+[Aplicacao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/optparam/expressoes/Aplicacao.java) ::= Id"(" ListExp ")"
 
 ListExp ::= Expressao <br />
 >	| Expressao, ListExp
@@ -59,4 +59,4 @@ ListExp ::= Expressao <br />
 ListParametro ::= Parametro	<img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/> <br />
 >	| Parametro ListParametro
 
-[IfThenElse](src/main/java/plp/lf1/expressoes/IfThenElse.java) ::= "if" Expressao "then" Expressao "else" Expressao
+[IfThenElse](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/IfThenElse.java) ::= "if" Expressao "then" Expressao "else" Expressao
