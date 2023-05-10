@@ -20,7 +20,7 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 
 ## BNF
 [Programa](src/main/java/plp/lf1/Programa.java) ::= Expressao
-<br />
+
 [Expressao](src/main/java/plp/le1/expressoes/Expressao.java) ::= Valor <br />
 >	| ExpUnaria <br />
 >	| ExpBinaria <br />
@@ -28,57 +28,57 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 >	| Id <br />
 >	| Aplicacao <br />
 >	| IfThenElse <br />
-<br />
+
 [ExpUnaria](src/main/java/plp/le1/expressoes/ExpUnaria.java) ::= "-" Expressao <br />
 >	| "not" Expressao <br />
 >	| "length" Expressao <br />
-<br />
+
 [ExpBinaria](src/main/java/plp/le1/expressoes/ExpBinaria.java) ::= Expressao "+" Expressao <br />
 >	| Expressao "-" Expressao <br />
 >	| Expressao "and" Expressao <br />
 >	| Expressao "or" Expressao <br />
 >	| Expressao "==" Expressao <br />
 >	| Expressao "++" Expressao <br />
-<br />
+
 [ExpDeclaracao](src/main/java/plp/lf1/expressoes/ExpDeclaracao.java) ::= "let" DeclaracaoFuncional "in" Expressao
-<br />
+
 [Valor](src/main/java/plp/le1/expressoes/Valor.java) ::= ValorConcreto
-<br />
+
 [ValorConcreto](src/main/java/plp/le1/expressoes/ValorConcreto.java) ::= ValorInteiro <br />
->	| ValorBooleano <br />
->	| ValorString <br />
+>	| ValorBooleano
+>	| ValorString 
 > | ValorFuncao	<<--------------------------- ALTERAÇÃO
-<br />
+
 [ValorFuncao](src/main/java/plp/le2/expressoes/ValorFuncao.java) ::= "fn" ListParametro "." Expressao  <<--------- ALTERAÇÃO
-<br />
+
 [DeclaracaoFuncional](src/main/java/plp/lf1/expressoes/DeclaracaoFuncional.java) ::= DecVariavel <br />
 >	| DecFuncao <br />
 >	| DecComposta
-<br />
+
 [DecVariavel](src/main/java/plp/lf1/expressoes/DecVariavel.java) ::= "var" Id "=" Expressao
-<br />
+
 [DecFuncao](src/main/java/plp/optparam/expressoes/DecFuncao.java) ::= "fun" ListParametro "=" Expressao	<<----------- ALTERAÇÃO
-<br />
+
 [DecComposta](src/main/java/plp/lf1/expressoes/DecComposta.java) ::= DeclaracaoFuncional "," DeclaracaoFuncional
-<br />
+
 [Parametro](src/main/java/plp/le1/expressoes/Parametro.java) ::= ParametroObrigatorio   <<---------------------- ALTERAÇÃO <br />
 >	| ParametroOpcional
-<br />
+
 [ParametroObrigatorio](src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) ::= Id   <<----------------------------- ALTERAÇÃO
-<br />
+
 [ParametroOpcional](src/main/java/plp/le1/expressoes/ParametroOpcional.java) ::= Id "?" "(" Expressao ")"	<<----------- ALTERAÇÃO
-<br />
+
 ListId ::= Id <br />
 >	| Id ListId
-<br />
+
 [Aplicacao](src/main/java/plp/optparam/expressoes/Aplicacao.java) ::= Id"(" ListExp ")"
-<br />
+
 ListExp ::= Expressao <br />
 >	| Expressao, ListExp
-<br />
+
 ListParametro ::= Parametro	<<--------------------------- ALTERAÇÃO <br />
 >	| Parametro ListParametro
-<br />
+
 IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
 
 ## Extensões realizadas em LF1
