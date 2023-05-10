@@ -23,10 +23,13 @@ public class TipoFuncao implements Tipo {
 	private List<Tipo> dominio;
 
 	private Tipo imagem;
+	
+	private int aridadeRequerido;
 
-	public TipoFuncao(List<Tipo> dominio, Tipo imagem) {
+	public TipoFuncao(List<Tipo> dominio, Tipo imagem, int aridadeRequerido) {
 		this.dominio = dominio;
 		this.imagem = imagem;
+		this.aridadeRequerido = aridadeRequerido;
 	}
 
 	public String getNome() {
@@ -39,6 +42,10 @@ public class TipoFuncao implements Tipo {
 
 	public Tipo getImagem() {
 		return imagem;
+	}
+	
+	public int getAridadeRequerido() {
+		return aridadeRequerido;
 	}
 
 	public boolean eBooleano() {
@@ -113,8 +120,8 @@ public class TipoFuncao implements Tipo {
 	 * @return
 	 */
 	private boolean checkArgumentListSize(List<? extends Expressao> parametrosFormais) {
-		// ALTERADO PARA PERMITIR QUE A FUNÇÃO RECEBA MENOS ARGUMENTOS DO QUE CONSTA NA DEFINIÇÃO
-		return getDominio().size() >= parametrosFormais.size();
+		return getAridadeRequerido() <= parametrosFormais.size() && 
+			   parametrosFormais.size() <= getDominio().size();
 	}
 
 	private boolean checkArgumentTypes(AmbienteCompilacao ambiente, List<? extends Expressao> parametrosFormais)

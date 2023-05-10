@@ -9,11 +9,14 @@ import plp.le1.util.Tipo;
 import plp.le2.excecoes.VariavelJaDeclaradaException;
 import plp.le2.excecoes.VariavelNaoDeclaradaException;
 import plp.le2.expressoes.Id;
+import plp.le2.expressoes.ValorFuncao;
 import plp.le2.memoria.AmbienteCompilacao;
 import plp.le2.memoria.AmbienteExecucao;
-import plp.lf1.memoria.AmbienteExecucaoFuncional;
-import plp.optparam.util.DefFuncao;
 
+/**
+ * Modificado para utilizar: AmbienteExecucao, ValorFuncao.
+ * @author Cleber Moura <ctm@cin.ufpe.br>
+ */
 public class ExpDeclaracao implements Expressao {
 
 	DeclaracaoFuncional declaracao;
@@ -28,12 +31,11 @@ public class ExpDeclaracao implements Expressao {
 		return expressao;
 	}
 
-	public Valor avaliar(AmbienteExecucao ambienteFuncional)
+	public Valor avaliar(AmbienteExecucao amb)
 			throws VariavelNaoDeclaradaException, VariavelJaDeclaradaException {
-		AmbienteExecucaoFuncional amb = (AmbienteExecucaoFuncional) ambienteFuncional;
 		amb.incrementa();
 		Map<Id, Valor> declaracoes = new HashMap<Id, Valor>();
-		Map<Id, DefFuncao> declaracoesFuncoes = new HashMap<Id, DefFuncao>();
+		Map<Id, ValorFuncao> declaracoesFuncoes = new HashMap<Id, ValorFuncao>();
 		declaracao.elabora(amb, declaracoes, declaracoesFuncoes);
 		declaracao.incluir(amb, declaracoes, declaracoesFuncoes);
 		Valor vresult = expressao.avaliar(amb);
@@ -51,7 +53,7 @@ public class ExpDeclaracao implements Expressao {
 			if (result) {
 				Map<Id, Tipo> tipos = new HashMap<Id, Tipo>();
 				declaracao.elabora(ambiente, tipos);
-				declaracao.incluir(ambiente, tipos);
+				declaracao.incluir(ambiente, tipos, true);
 				result = expressao.checaTipo(ambiente);
 			}
 		} finally {
@@ -65,7 +67,7 @@ public class ExpDeclaracao implements Expressao {
 		ambiente.incrementa();
 		Map<Id, Tipo> tipos = new HashMap<Id, Tipo>();
 		declaracao.elabora(ambiente, tipos);
-		declaracao.incluir(ambiente, tipos);
+		declaracao.incluir(ambiente, tipos, true);
 		Tipo vresult = expressao.getTipo(ambiente);
 		ambiente.restaura();
 		return vresult;
