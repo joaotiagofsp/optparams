@@ -49,7 +49,7 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 >	| [ValorString](src/main/java/plp/le1/expressoes/ValorString.java) <br />
 > | ValorFuncao	<<--------------------------- ALTERAÇÃO
 
-[ValorFuncao](src/main/java/plp/le2/expressoes/ValorFuncao.java) ::= "fn" ListParametro "." Expressao  <<--------- ALTERAÇÃO
+[ValorFuncao](src/main/java/plp/le2/expressoes/ValorFuncao.java) ::= "fn" ListParametro "." Expressao  <<----------- ALTERAÇÃO
 
 [DeclaracaoFuncional](src/main/java/plp/lf1/expressoes/DeclaracaoFuncional.java) ::= DecVariavel <br />
 >	| DecFuncao <br />
@@ -57,16 +57,16 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 
 [DecVariavel](src/main/java/plp/lf1/expressoes/DecVariavel.java) ::= "var" Id "=" Expressao
 
-[DecFuncao](src/main/java/plp/optparam/expressoes/DecFuncao.java) ::= "fun" ListParametro "=" Expressao	<<----------- ALTERAÇÃO
+[DecFuncao](src/main/java/plp/optparam/expressoes/DecFuncao.java) ::= "fun" ListParametro "=" Expressao	<<---------- ALTERAÇÃO
 
 [DecComposta](src/main/java/plp/lf1/expressoes/DecComposta.java) ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
-[Parametro](src/main/java/plp/le1/expressoes/Parametro.java) ::= ParametroObrigatorio   <<---------------------- ALTERAÇÃO <br />
+[Parametro](src/main/java/plp/le1/expressoes/Parametro.java) ::= ParametroObrigatorio   <<-------------------------- ALTERAÇÃO <br />
 >	| ParametroOpcional
 
-[ParametroObrigatorio](src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) ::= Id   <<----------------------------- ALTERAÇÃO
+[ParametroObrigatorio](src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) ::= Id   <<---------------------- ALTERAÇÃO
 
-[ParametroOpcional](src/main/java/plp/le1/expressoes/ParametroOpcional.java) ::= Id "?" "(" Expressao ")"	<<----------- ALTERAÇÃO
+[ParametroOpcional](src/main/java/plp/le1/expressoes/ParametroOpcional.java) ::= Id "?" "(" Expressao ")"	<<-------- ALTERAÇÃO
 
 ListId ::= Id <br />
 >	| Id ListId
