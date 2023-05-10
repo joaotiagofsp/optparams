@@ -21,9 +21,7 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 ## BNF
 [Programa](src/main/java/plp/lf1/Programa.java) ::= Expressao
 
-```
-
-Expressao ::= Valor
+[Expressao](src/main/java/plp/le1/expressoes/Expressao.java) ::= Valor
 	| ExpUnaria
 	| ExpBinaria
 	| ExpDeclaracao
@@ -31,18 +29,18 @@ Expressao ::= Valor
 	| Aplicacao
 	| IfThenElse
 
-ExpUnaria ::= "-" Expressao 
+[ExpUnaria](src/main/java/plp/le1/expressoes/ExpUnaria.java) ::= "-" Expressao 
 		| "not" Expressao 
 		| "length" Expressao
 
-ExpBinaria ::= Expressao "+" Expressao
+[ExpBinaria](src/main/java/plp/le1/expressoes/ExpBinaria.java) ::= Expressao "+" Expressao
 		| Expressao "-" Expressao
 		| Expressao "and" Expressao
 		| Expressao "or" Expressao
 		| Expressao "==" Expressao
 		| Expressao "++" Expressao
 
-ExpDeclaracao ::= "let" DeclaracaoFuncional "in" Expressao
+[ExpDeclaracao](src/main/java/plp/lf1/expressoes/ExpDeclaracao.java) ::= "let" DeclaracaoFuncional "in" Expressao
 
 Valor ::= ValorConcreto
 
