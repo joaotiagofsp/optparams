@@ -45,8 +45,8 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 [Valor](src/main/java/plp/le1/expressoes/Valor.java) ::= ValorConcreto
 
 [ValorConcreto](src/main/java/plp/le1/expressoes/ValorConcreto.java) ::= ValorInteiro <br />
->	| ValorBooleano <br />
->	| ValorString <br />
+>	| [ValorBooleano](src/main/java/plp/le1/expressoes/ValorBooleano.java) <br />
+>	| [ValorString](src/main/java/plp/le1/expressoes/ValorString.java) <br />
 > | ValorFuncao	<<--------------------------- ALTERAÇÃO
 
 [ValorFuncao](src/main/java/plp/le2/expressoes/ValorFuncao.java) ::= "fn" ListParametro "." Expressao  <<--------- ALTERAÇÃO
