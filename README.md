@@ -79,7 +79,7 @@ ListExp ::= Expressao <br />
 ListParametro ::= Parametro	<<--------------------------- ALTERAÇÃO <br />
 >	| Parametro ListParametro
 
-IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
+[IfThenElse](src/main/java/plp/lf1/expressoes/IfThenElse.java) ::= "if" Expressao "then" Expressao "else" Expressao
 
 ## Extensões realizadas em LF1
 1. Reutilização do código base de classes da LF2:
