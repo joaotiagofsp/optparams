@@ -108,4 +108,15 @@ IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
 * ```PListaExpBinaria( )```
 
 ## Slides da apresentação
-https://docs.google.com/presentation/d/1Pb0hrHNTp-KSgiCw7io2ZlQeYakQCfIfzsrDbpknP34/edit?usp=sharing
+
+Disponível neste [LINK](https://docs.google.com/presentation/d/1Pb0hrHNTp-KSgiCw7io2ZlQeYakQCfIfzsrDbpknP34/edit?usp=sharing)
+
+## Publicando o site
+
+Para publicação do site, execute o seguinte comando:
+
+```
+clean site site:stage scm-publish:publish-scm
+```
+
+O site será publicado no endereço: [https://joaotiagofsp.github.io/optparams](https://joaotiagofsp.github.io/optparams)
