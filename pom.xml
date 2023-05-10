@@ -7,7 +7,8 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>OptParams</name>
 	<description>
-		Projeto da disciplina Paradigmas de Linguagens de Programação (IN1007) - Cin/UFPE - 2023
+		Projeto da disciplina Paradigmas de Linguagens de Programação (IN1007) -
+		Cin/UFPE - 2023
 	</description>
 	<developers>
 		<developer>
@@ -23,7 +24,7 @@
 	<properties>
 		<version.javacc-maven-plugin>3.0.1</version.javacc-maven-plugin>
 		<maven.compiler.target>1.8</maven.compiler.target>
-    	<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 
 	<dependencies>
@@ -58,8 +59,15 @@
 				<groupId>
 					org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>
-					4.0.0-M8</version>
+				<version>4.0.0-M8</version>
+			</plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-scm-publish-plugin</artifactId>
+			  <version>3.2.1</version>
+			  <configuration>
+			    <scmBranch>gh-pages</scmBranch>
+			  </configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -130,7 +138,7 @@
 				<version>
 					3.5.0</version>
 				<configuration>
-			        <doclint>all,-missing</doclint>
+					<doclint>all,-missing</doclint>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -146,4 +154,11 @@
 			</plugin>
 		</plugins>
 	</reporting>
+
+	<distributionManagement>
+		<site>
+			<id>github</id>
+			<url>scm:git:git@github.com:joaotiagofsp/optparams.git</url>
+		</site>
+	</distributionManagement>
 </project>
