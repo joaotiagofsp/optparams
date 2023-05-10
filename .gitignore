@@ -113,3 +113,6 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,maven,java
+.classpath
+.project
+.settings/org.eclipse.jdt.core.prefs
