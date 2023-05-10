@@ -13,7 +13,7 @@ import plp.le2.memoria.AmbienteExecucao;
 
 /**
  * Modificado para utilizar AmbienteExecucao e ValorFuncao
- * @author Cleber Moura <ctm@cin.ufpe.br>
+ * @author <a href="mailto:ctm@cin.ufpe.br">Cleber Moura</a>
  */
 public class DecComposta implements DeclaracaoFuncional {
 	private DeclaracaoFuncional d1;
@@ -53,7 +53,6 @@ public class DecComposta implements DeclaracaoFuncional {
 		return new DecComposta(d1.clone(),d2.clone());
 	}
 
-	@Override
 	public void reduzir(AmbienteExecucao amb) {
 		d1.reduzir(amb);
 		d2.reduzir(amb);

@@ -13,7 +13,7 @@ import plp.le2.memoria.AmbienteExecucao;
 
 /**
  * Modificado para utilizar: AmbienteExecucao, ValorFuncao.
- * @author Cleber Moura <ctm@cin.ufpe.br>
+ * @author <a href="mailto:ctm@cin.ufpe.br">Cleber Moura</a>
  */
 public interface DeclaracaoFuncional {
 	public boolean checaTipo(AmbienteCompilacao ambiente) throws VariavelNaoDeclaradaException, VariavelJaDeclaradaException;
