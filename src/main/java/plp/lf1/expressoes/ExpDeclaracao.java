@@ -15,7 +15,7 @@ import plp.le2.memoria.AmbienteExecucao;
 
 /**
  * Modificado para utilizar: AmbienteExecucao, ValorFuncao.
- * @author Cleber Moura <ctm@cin.ufpe.br>
+ * @author <a href="mailto:ctm@cin.ufpe.br">Cleber Moura</a>
  */
 public class ExpDeclaracao implements Expressao {
 

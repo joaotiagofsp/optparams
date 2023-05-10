@@ -341,40 +341,6 @@ Expressao PExpPrimaria() :
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////
-//////////////////////    REGRA DE PRODUCAO ATUALIZADA   //////////////////////
-//// OBS: essa regra so era chamada no contexto de uma declaracao de Funcao ///
-///////////////////////////////////////////////////////////////////////////////
-List PListaId() :
-{
-  Id id;
-  ParametroFuncao param;
-  Valor valorDefault;
-  List < ParametroFuncao > retorno = null;
-}
-{
-  (
-    ///////////////////////////////////////////////////////////////////////////////
-    // ALTERADA A ESTRUTURA DA DECLARACAO DA FUNCAO PARA INCLUIR VALORES DEFAULT //
-    ///////////////////////////////////////////////////////////////////////////////
-    id = PId() < LPAREN > valorDefault = PValor() < RPAREN >
-    {
-      if (retorno == null)
-      {
-        retorno = new ArrayList < ParametroFuncao > ();
-        retorno.add(new ParametroFuncao(id, valorDefault));
-      }
-      else
-      {
-        retorno.add(new ParametroFuncao(id, valorDefault));
-      }
-    }
-  )*
-  {
-    return retorno;
-  }
-}
-
 DeclaracaoFuncional PDeclVar() :
 {
   Id id;

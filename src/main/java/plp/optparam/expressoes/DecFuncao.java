@@ -109,7 +109,6 @@ public class DecFuncao implements DeclaracaoFuncional {
 		return new DecFuncao(this.id.clone(), this.valorFuncao.clone());
 	}
 
-	@Override
 	public void elabora(AmbienteExecucao amb, Map<Id, Valor> declaracoes,
 			Map<Id, ValorFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
 		declaracoesFuncoes.put(getId(), getFuncao());
@@ -121,27 +120,23 @@ public class DecFuncao implements DeclaracaoFuncional {
 		getFuncao().setId(getId());
 	}
 
-	@Override
 	public void elabora(AmbienteCompilacao amb, Map<Id, Tipo> tipos) throws VariavelJaDeclaradaException {
 		tipos.put(getId(), getTipo(amb));
 		
 	}
 
-	@Override
 	public void incluir(AmbienteExecucao amb, Map<Id, Valor> declaracoes,
 			Map<Id, ValorFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
 		amb.map(getId(), declaracoesFuncoes.get(getId()));
 		
 	}
 
-	@Override
 	public void incluir(AmbienteCompilacao amb, Map<Id, Tipo> tipos, boolean incluirCuringa) throws VariavelJaDeclaradaException {
 		boolean ehCuringa = (tipos.get(getId()) == TipoPolimorfico.CURINGA);
 		boolean incluir = (ehCuringa&&incluirCuringa) || (!ehCuringa);
 		if(incluir) amb.map(getId(), tipos.get(getId()));
 	}
 
-	@Override
 	public void reduzir(AmbienteExecucao amb) {
 		setValorFuncao((ValorFuncao)getFuncao().reduzir(amb));
 	}
