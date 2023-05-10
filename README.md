@@ -30,15 +30,15 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 >	| IfThenElse <br />
 
 [ExpUnaria](src/main/java/plp/le1/expressoes/ExpUnaria.java) ::= "-" Expressao <br />
->		| "not" Expressao <br />
->		| "length" Expressao <br />
+>	| "not" Expressao <br />
+>	| "length" Expressao <br />
 
 [ExpBinaria](src/main/java/plp/le1/expressoes/ExpBinaria.java) ::= Expressao "+" Expressao <br />
->		| Expressao "-" Expressao <br />
->		| Expressao "and" Expressao <br />
->		| Expressao "or" Expressao <br />
->		| Expressao "==" Expressao <br />
->		| Expressao "++" Expressao <br />
+>	| Expressao "-" Expressao <br />
+>	| Expressao "and" Expressao <br />
+>	| Expressao "or" Expressao <br />
+>	| Expressao "==" Expressao <br />
+>	| Expressao "++" Expressao <br />
 
 [ExpDeclaracao](src/main/java/plp/lf1/expressoes/ExpDeclaracao.java) ::= "let" DeclaracaoFuncional "in" Expressao
 
