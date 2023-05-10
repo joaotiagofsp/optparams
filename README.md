@@ -42,36 +42,36 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 
 [ExpDeclaracao](src/main/java/plp/lf1/expressoes/ExpDeclaracao.java) ::= "let" DeclaracaoFuncional "in" Expressao
 
-Valor ::= ValorConcreto
+[Valor](src/main/java/plp/le1/expressoes/Valor.java) ::= ValorConcreto
 
-ValorConcreto ::= ValorInteiro 
+[ValorConcreto](src/main/java/plp/le1/expressoes/ValorConcreto.java) ::= ValorInteiro 
 		| ValorBooleano 
 		| ValorString
       		| ValorFuncao	<<--------------------------- ALTERAÇÃO
 
-ValorFuncao ::= "fn" ListParametro "." Expressao  <<--------- ALTERAÇÃO
+[ValorFuncao](src/main/java/plp/le2/expressoes/ValorFuncao.java) ::= "fn" ListParametro "." Expressao  <<--------- ALTERAÇÃO
 
-DeclaracaoFuncional ::= DecVariavel
+[DeclaracaoFuncional](src/main/java/plp/lf1/expressoes/DeclaracaoFuncional.java) ::= DecVariavel
 			| DecFuncao
 			| DecComposta
 
-DecVariavel ::= "var" Id "=" Expressao
+[DecVariavel](src/main/java/plp/lf1/expressoes/DecVariavel.java) ::= "var" Id "=" Expressao
 
-DecFuncao ::= "fun" ListParametro "=" Expressao	<<----------- ALTERAÇÃO
+[DecFuncao](src/main/java/plp/optparam/expressoes/DecFuncao.java) ::= "fun" ListParametro "=" Expressao	<<----------- ALTERAÇÃO
 
-DecComposta ::= DeclaracaoFuncional "," DeclaracaoFuncional
+[DecComposta](src/main/java/plp/lf1/expressoes/DecComposta.java) ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
-Parametro ::= ParametroObrigatorio   <<---------------------- ALTERAÇÃO 
+[Parametro](src/main/java/plp/le1/expressoes/Parametro.java) ::= ParametroObrigatorio   <<---------------------- ALTERAÇÃO 
 		| ParametroOpcional
 
-ParametroObrigatorio ::= Id   <<----------------------------- ALTERAÇÃO
+[ParametroObrigatorio](src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) ::= Id   <<----------------------------- ALTERAÇÃO
 
-ParametroOpcional ::= Id "?" "(" Expressao ")"	<<----------- ALTERAÇÃO
+[ParametroOpcional](src/main/java/plp/le1/expressoes/ParametroOpcional.java) ::= Id "?" "(" Expressao ")"	<<----------- ALTERAÇÃO
 
 ListId ::= Id  
 	|  Id ListId
 
-Aplicacao:= Id"(" ListExp ")"
+[Aplicacao](src/main/java/plp/optparam/expressoes/Aplicacao.java) ::= Id"(" ListExp ")"
 
 ListExp ::= Expressao  
 	|  Expressao, ListExp
