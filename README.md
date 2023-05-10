@@ -45,15 +45,15 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 [Valor](src/main/java/plp/le1/expressoes/Valor.java) ::= ValorConcreto
 
 [ValorConcreto](src/main/java/plp/le1/expressoes/ValorConcreto.java) ::= ValorInteiro <br />
->		| ValorBooleano <br />
->		| ValorString <br />
->     		| ValorFuncao	<<--------------------------- ALTERAÇÃO
+>	| ValorBooleano <br />
+>	| ValorString <br />
+> | ValorFuncao	<<--------------------------- ALTERAÇÃO
 
 [ValorFuncao](src/main/java/plp/le2/expressoes/ValorFuncao.java) ::= "fn" ListParametro "." Expressao  <<--------- ALTERAÇÃO
 
 [DeclaracaoFuncional](src/main/java/plp/lf1/expressoes/DeclaracaoFuncional.java) ::= DecVariavel <br />
->			| DecFuncao <br />
->			| DecComposta
+>	| DecFuncao <br />
+>	| DecComposta
 
 [DecVariavel](src/main/java/plp/lf1/expressoes/DecVariavel.java) ::= "var" Id "=" Expressao
 
@@ -62,7 +62,7 @@ Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e define
 [DecComposta](src/main/java/plp/lf1/expressoes/DecComposta.java) ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
 [Parametro](src/main/java/plp/le1/expressoes/Parametro.java) ::= ParametroObrigatorio   <<---------------------- ALTERAÇÃO <br />
->		| ParametroOpcional
+>	| ParametroOpcional
 
 [ParametroObrigatorio](src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) ::= Id   <<----------------------------- ALTERAÇÃO
 
@@ -77,7 +77,7 @@ ListExp ::= Expressao  <br />
 >	|  Expressao, ListExp
 
 ListParametro ::= Parametro	<<--------------------------- ALTERAÇÃO <br />
->		|  Parametro ListParametro
+>	|  Parametro ListParametro
 
 IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
 
