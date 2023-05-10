@@ -80,7 +80,6 @@ ListParametro ::= Parametro	<<--------------------------- ALTERAÇÃO
 		|  Parametro ListParametro
 
 IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
-```
 
 ## Extensões realizadas em LF1
 1. Reutilização do código base de classes da LF2:
