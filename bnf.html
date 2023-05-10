@@ -65,71 +65,75 @@
         <main id="bodyColumn"  class="span10" >
 <section><section>
 <h2>BNF</h2>
-<p>Ainda em constru&#xe7;&#xe3;o&#x2026;</p>
+<p><a href="src/main/java/plp/lf1/Programa.java">Programa</a> ::= Expressao</p>
+<p><a href="src/main/java/plp/le1/expressoes/Expressao.java">Expressao</a> ::= Valor <br /></p>
+<blockquote>
 
-<div class="verbatim">
-<pre><code>Programa ::= Expressao
+<p>| ExpUnaria <br />
+| ExpBinaria <br />
+| ExpDeclaracao <br />
+| <a href="src/main/java/plp/le2/expressoes/Id.java">Id</a> <br />
+| Aplicacao <br />
+| IfThenElse <br /></p>
+</blockquote>
+<p><a href="src/main/java/plp/le1/expressoes/ExpUnaria.java">ExpUnaria</a> ::= &#x201c;-&#x201d; Expressao <br /></p>
+<blockquote>
 
-Expressao ::= Valor
-	| ExpUnaria
-	| ExpBinaria
-	| ExpDeclaracao
-	| Id
-	| Aplicacao
-	| IfThenElse
+<p>| &#x201c;not&#x201d; Expressao <br />
+| &#x201c;length&#x201d; Expressao <br /></p>
+</blockquote>
+<p><a href="src/main/java/plp/le1/expressoes/ExpBinaria.java">ExpBinaria</a> ::= Expressao &#x201c;+&#x201d; Expressao <br /></p>
+<blockquote>
 
-ExpUnaria ::= &quot;-&quot; Expressao 
-		| &quot;not&quot; Expressao 
-		| &quot;length&quot; Expressao
+<p>| Expressao &#x201c;-&#x201d; Expressao <br />
+| Expressao &#x201c;and&#x201d; Expressao <br />
+| Expressao &#x201c;or&#x201d; Expressao <br />
+| Expressao &#x201c;==&#x201d; Expressao <br />
+| Expressao &#x201c;++&#x201d; Expressao <br /></p>
+</blockquote>
+<p><a href="src/main/java/plp/lf1/expressoes/ExpDeclaracao.java">ExpDeclaracao</a> ::= &#x201c;let&#x201d; DeclaracaoFuncional &#x201c;in&#x201d; Expressao</p>
+<p><a href="src/main/java/plp/le1/expressoes/Valor.java">Valor</a> ::= ValorConcreto</p>
+<p><a href="src/main/java/plp/le1/expressoes/ValorConcreto.java">ValorConcreto</a> ::= <a href="src/main/java/plp/le1/expressoes/ValorInteiro.java">ValorInteiro</a> <br /></p>
+<blockquote>
 
-ExpBinaria ::= Expressao &quot;+&quot; Expressao
-		| Expressao &quot;-&quot; Expressao
-		| Expressao &quot;and&quot; Expressao
-		| Expressao &quot;or&quot; Expressao
-		| Expressao &quot;==&quot; Expressao
-		| Expressao &quot;++&quot; Expressao
+<p>| <a href="src/main/java/plp/le1/expressoes/ValorBooleano.java">ValorBooleano</a> <br />
+| <a href="src/main/java/plp/le1/expressoes/ValorString.java">ValorString</a> <br />
+| ValorFuncao	<img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18" /></p>
+</blockquote>
+<p><a href="src/main/java/plp/le2/expressoes/ValorFuncao.java">ValorFuncao</a> ::= &#x201c;fn&#x201d; ListParametro &#x201c;.&#x201d; Expressao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18" /></p>
+<p><a href="src/main/java/plp/lf1/expressoes/DeclaracaoFuncional.java">DeclaracaoFuncional</a> ::= DecVariavel <br /></p>
+<blockquote>
 
-ExpDeclaracao ::= &quot;let&quot; DeclaracaoFuncional &quot;in&quot; Expressao
+<p>| DecFuncao <br />
+| DecComposta</p>
+</blockquote>
+<p><a href="src/main/java/plp/lf1/expressoes/DecVariavel.java">DecVariavel</a> ::= &#x201c;var&#x201d; Id &#x201c;=&#x201d; Expressao</p>
+<p><a href="src/main/java/plp/optparam/expressoes/DecFuncao.java">DecFuncao</a> ::= &#x201c;fun&#x201d; ListParametro &#x201c;=&#x201d; Expressao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18" /></p>
+<p><a href="src/main/java/plp/lf1/expressoes/DecComposta.java">DecComposta</a> ::= DeclaracaoFuncional &#x201c;,&#x201d; DeclaracaoFuncional</p>
+<p><a href="src/main/java/plp/le1/expressoes/Parametro.java">Parametro</a> ::= ParametroObrigatorio <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18" /> <br /></p>
+<blockquote>
 
-Valor ::= ValorConcreto
+<p>| ParametroOpcional</p>
+</blockquote>
+<p><a href="src/main/java/plp/le1/expressoes/ParametroObrigatorio.java">ParametroObrigatorio</a> ::= Id <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18" /></p>
+<p><a href="src/main/java/plp/le1/expressoes/ParametroOpcional.java">ParametroOpcional</a> ::= Id &#x201c;?&#x201d; &#x201c;(&#x201d; Expressao &#x201c;)&#x201d;	<img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18" /></p>
+<p>ListId ::= Id <br /></p>
+<blockquote>
 
-ValorConcreto ::= ValorInteiro 
-		| ValorBooleano 
-		| ValorString
-      		| ValorFuncao	&lt;&lt;--------------------------- ALTERA&#xc7;&#xc3;O
+<p>| Id ListId</p>
+</blockquote>
+<p><a href="src/main/java/plp/optparam/expressoes/Aplicacao.java">Aplicacao</a> ::= Id&quot;(&quot; ListExp &#x201c;)&#x201d;</p>
+<p>ListExp ::= Expressao <br /></p>
+<blockquote>
 
-ValorFuncao ::= &quot;fn&quot; ListParametro &quot;.&quot; Expressao  &lt;&lt;--------- ALTERA&#xc7;&#xc3;O
+<p>| Expressao, ListExp</p>
+</blockquote>
+<p>ListParametro ::= Parametro	<img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18" /> <br /></p>
+<blockquote>
 
-DeclaracaoFuncional ::= DecVariavel
-			| DecFuncao
-			| DecComposta
-
-DecVariavel ::= &quot;var&quot; Id &quot;=&quot; Expressao
-
-DecFuncao ::= &quot;fun&quot; ListParametro &quot;=&quot; Expressao	&lt;&lt;----------- ALTERA&#xc7;&#xc3;O
-
-DecComposta ::= DeclaracaoFuncional &quot;,&quot; DeclaracaoFuncional
-
-Parametro ::= ParametroObrigatorio   &lt;&lt;---------------------- ALTERA&#xc7;&#xc3;O 
-		| ParametroOpcional
-
-ParametroObrigatorio ::= Id   &lt;&lt;----------------------------- ALTERA&#xc7;&#xc3;O
-
-ParametroOpcional ::= Id &quot;?&quot; &quot;(&quot; Expressao &quot;)&quot;	&lt;&lt;----------- ALTERA&#xc7;&#xc3;O
-
-ListId ::= Id  
-	|  Id ListId
-
-Aplicacao:= Id&quot;(&quot; ListExp &quot;)&quot;
-
-ListExp ::= Expressao  
-	|  Expressao, ListExp
-
-ListParametro ::= Parametro	&lt;&lt;--------------------------- ALTERA&#xc7;&#xc3;O
-		|  Parametro ListParametro
-
-IfThenElse ::= &quot;if&quot; Expressao &quot;then&quot; Expressao &quot;else&quot; Expressao
-</code></pre></div></section></section>
+<p>| Parametro ListParametro</p>
+</blockquote>
+<p><a href="src/main/java/plp/lf1/expressoes/IfThenElse.java">IfThenElse</a> ::= &#x201c;if&#x201d; Expressao &#x201c;then&#x201d; Expressao &#x201c;else&#x201d; Expressao</p></section></section>
         </main>
       </div>
     </div>
