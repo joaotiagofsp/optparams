@@ -19,9 +19,8 @@ let fun soma a(1) b(2) = a + b
 Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e definem o valor default caso um valor não seja expressamente informado na chamada da função.
 
 ## BNF
-Ainda em construção...
 ```
-Programa ::= Expressao
+[Programa](src/main/java/plp/lf1/Programa.java) ::= Expressao
 
 Expressao ::= Valor
 	| ExpUnaria
