@@ -1,22 +1,22 @@
 package plp.optparam.expressoes;
 
-import static plp.lf1.util.ToStringProvider.listToString;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import plp.le1.expressoes.Expressao;
+import plp.le1.expressoes.Parametro;
 import plp.le1.expressoes.Valor;
 import plp.le1.util.Tipo;
 import plp.le2.excecoes.VariavelJaDeclaradaException;
 import plp.le2.excecoes.VariavelNaoDeclaradaException;
 import plp.le2.expressoes.Id;
-import plp.le2.expressoes.ValorFuncao;
 import plp.le2.memoria.AmbienteCompilacao;
-import plp.le2.memoria.AmbienteExecucao;
 import plp.lf1.expressoes.DeclaracaoFuncional;
+import plp.lf1.memoria.AmbienteExecucaoFuncional;
 import plp.lf1.util.TipoPolimorfico;
+import plp.lf1.util.ToStringProvider;
+import plp.optparam.util.DefFuncao;
 import plp.optparam.util.TipoFuncao;
 
 /**
@@ -29,43 +29,42 @@ import plp.optparam.util.TipoFuncao;
 public class DecFuncao implements DeclaracaoFuncional {
 
 	private Id id;
-	
-	private ValorFuncao valorFuncao;
 
-	public DecFuncao(Id idFun, ValorFuncao valorFuncao) {
+	private DefFuncao funcao;
+
+	public DecFuncao(Id idFun, List<Parametro> args, Expressao exp) {
 		this.id = idFun;
-		this.valorFuncao = valorFuncao;
-	}
-
-	/**
-	 * Retorna uma representacao String desta expressao. Util para depuracao.
-	 * 
-	 * @return uma representacao String desta expressao.
-	 */
-	@Override
-	public String toString() {
-		return String.format("fun %s (%s) = %s", id, listToString(valorFuncao
-				.getListaParametros(), ","), getExpressao());
+		this.funcao = new DefFuncao(args, exp);
 	}
 
 	public Id getId() {
 		return id;
 	}
 
+	public List<Parametro> getListaParametros() {
+		return funcao.getListaParametros();
+	}
+
 	public Expressao getExpressao() {
-		return valorFuncao.getExp();
+		return funcao.getExp();
 	}
 
-	public ValorFuncao getFuncao() {
-		return valorFuncao;
+	public int getAridade() {
+		return funcao.getAridade();
 	}
 
-	private int getAridade() {
-		return valorFuncao.getAridade();
+	public DefFuncao getFuncao() {
+		return funcao;
 	}
 	
 	private int getAridadeRequerido() {
-		return valorFuncao.getAridadeRequerido();
+		return funcao.getAridadeRequerido();
+	}
+
+	@Override
+	public String toString() {
+		return String.format("fun %s (%s) = %s", id, ToStringProvider.listToString(funcao.getListaParametros(), ","),
+				funcao.getExp());
 	}
 
 	public boolean checaTipo(AmbienteCompilacao ambiente)
@@ -80,13 +79,12 @@ public class DecFuncao implements DeclaracaoFuncional {
 		// Mapeia a propria funcao no ambiente para permitir recursao.
 		ambiente.map(id, tipo);
 
-		boolean result = valorFuncao.checaTipo(ambiente);
+		boolean result = funcao.checaTipo(ambiente);
 		ambiente.restaura();
 		return result;
 	}
 
-	public Tipo getTipo(AmbienteCompilacao amb)
-			throws VariavelNaoDeclaradaException, VariavelJaDeclaradaException {
+	public Tipo getTipo(AmbienteCompilacao amb) throws VariavelNaoDeclaradaException, VariavelJaDeclaradaException {
 		amb.incrementa();
 
 		List<Tipo> params = new ArrayList<Tipo>(getAridade());
@@ -96,49 +94,35 @@ public class DecFuncao implements DeclaracaoFuncional {
 		Tipo tipo = new TipoFuncao(params, new TipoPolimorfico(), getAridadeRequerido());
 		amb.map(id, tipo);
 
-		Tipo result = valorFuncao.getTipo(amb);
+		Tipo result = funcao.getTipo(amb);
 		amb.restaura();
 		return result;
 	}
 
-	public void setValorFuncao(ValorFuncao valorFuncao) {
-		this.valorFuncao = valorFuncao;
-	}
-
 	public DecFuncao clone() {
-		return new DecFuncao(this.id.clone(), this.valorFuncao.clone());
-	}
-
-	public void elabora(AmbienteExecucao amb, Map<Id, Valor> declaracoes,
-			Map<Id, ValorFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
-		declaracoesFuncoes.put(getId(), getFuncao());
-		
-		//passos a mais
-		AmbienteExecucao ambienteClone = amb.clone();
-		ambienteClone.incrementa();
-		ambienteClone.map(getId(), getFuncao());
-		getFuncao().setId(getId());
+		DefFuncao aux = this.funcao.clone();
+		return new DecFuncao(this.id.clone(), aux.getListaParametros(), aux.getExp());
 	}
 
 	public void elabora(AmbienteCompilacao amb, Map<Id, Tipo> tipos) throws VariavelJaDeclaradaException {
 		tipos.put(getId(), getTipo(amb));
-		
-	}
-
-	public void incluir(AmbienteExecucao amb, Map<Id, Valor> declaracoes,
-			Map<Id, ValorFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
-		amb.map(getId(), declaracoesFuncoes.get(getId()));
-		
 	}
 
 	public void incluir(AmbienteCompilacao amb, Map<Id, Tipo> tipos, boolean incluirCuringa) throws VariavelJaDeclaradaException {
 		boolean ehCuringa = (tipos.get(getId()) == TipoPolimorfico.CURINGA);
 		boolean incluir = (ehCuringa&&incluirCuringa) || (!ehCuringa);
 		if(incluir) amb.map(getId(), tipos.get(getId()));
+
 	}
 
-	public void reduzir(AmbienteExecucao amb) {
-		setValorFuncao((ValorFuncao)getFuncao().reduzir(amb));
+	public void elabora(AmbienteExecucaoFuncional amb, Map<Id, Valor> declaracoes,
+			Map<Id, DefFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
+		declaracoesFuncoes.put(getId(), getFuncao());
+	}
+
+	public void incluir(AmbienteExecucaoFuncional amb, Map<Id, Valor> declaracoes,
+			Map<Id, DefFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
+		amb.mapFuncao(getId(), declaracoesFuncoes.get(getId()));
 	}
 
 }
