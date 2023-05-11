@@ -53,7 +53,6 @@
 | &lt;THEN: "then"&gt;
 | &lt;ELSE: "else"&gt;
 | &lt;FUNC: "fun"&gt;
-| &lt;FN: "fn"&gt;
 }
 
    </PRE>
@@ -425,34 +424,6 @@
    </PRE>
   </TD>
  </TR>
- <!-- Token -->
- <TR>
-  <TD>
-   <PRE>
-   </PRE>
-  </TD>
- </TR>
- <!-- Token -->
- <TR>
-  <TD>
-   <PRE>
-   </PRE>
-  </TD>
- </TR>
- <!-- Token -->
- <TR>
-  <TD>
-   <PRE>
-   </PRE>
-  </TD>
- </TR>
- <!-- Token -->
- <TR>
-  <TD>
-   <PRE>
-   </PRE>
-  </TD>
- </TR>
 </TABLE>
 <H2 ALIGN=CENTER>NON-TERMINALS</H2>
 <TABLE>
@@ -482,44 +453,39 @@
 <TD ALIGN=LEFT VALIGN=BASELINE>&lt;STRING_LITERAL&gt;</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod6">PValorFuncao</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod6">PValor</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>&lt;FN&gt; <A HREF="#prod7">PListaParametro</A> &lt;DOT&gt; <A HREF="#prod8">PExpressao</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod3">PValorInteiro</A> | <A HREF="#prod4">PValorBooleano</A> | <A HREF="#prod5">PValorString</A> )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod9">PValor</A></TD>
-<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod3">PValorInteiro</A> | <A HREF="#prod4">PValorBooleano</A> | <A HREF="#prod5">PValorString</A> | <A HREF="#prod6">PValorFuncao</A> )</TD>
-</TR>
-<TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod10">PId</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod7">PId</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
 <TD ALIGN=LEFT VALIGN=BASELINE>&lt;IDENTIFIER&gt;</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod11">PExpMenos</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod8">PExpMenos</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>&lt;MINUS&gt; <A HREF="#prod12">PExpPrimaria</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;MINUS&gt; <A HREF="#prod9">PExpPrimaria</A></TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod13">PExpNot</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod10">PExpNot</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>&lt;NOT&gt; <A HREF="#prod12">PExpPrimaria</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;NOT&gt; <A HREF="#prod9">PExpPrimaria</A></TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod14">PExpLength</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod11">PExpLength</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>&lt;LENGTH&gt; <A HREF="#prod12">PExpPrimaria</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;LENGTH&gt; <A HREF="#prod9">PExpPrimaria</A></TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod12">PExpPrimaria</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod9">PExpPrimaria</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod9">PValor</A> | <A HREF="#prod10">PId</A> | &lt;LPAREN&gt; <A HREF="#prod8">PExpressao</A> &lt;RPAREN&gt; )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod6">PValor</A> | <A HREF="#prod7">PId</A> | &lt;LPAREN&gt; <A HREF="#prod12">PExpressao</A> &lt;RPAREN&gt; )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod15">PDeclVar</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod13">PDeclVar</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;VAR&gt; <A HREF="#prod10">PId</A> &lt;ASSIGN&gt; <A HREF="#prod8">PExpressao</A> )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;VAR&gt; <A HREF="#prod7">PId</A> &lt;ASSIGN&gt; <A HREF="#prod12">PExpressao</A> )</TD>
 </TR>
  <!-- Special token -->
  <TR>
@@ -532,34 +498,34 @@
   </TD>
  </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod16">PDeclFuncao</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod14">PDeclFuncao</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;FUNC&gt; <A HREF="#prod10">PId</A> <A HREF="#prod7">PListaParametro</A> &lt;ASSIGN&gt; <A HREF="#prod8">PExpressao</A> )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;FUNC&gt; <A HREF="#prod7">PId</A> <A HREF="#prod15">PListaParametro</A> &lt;ASSIGN&gt; <A HREF="#prod12">PExpressao</A> )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod17">PDecComposta</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod16">PDecComposta</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod15">PDeclVar</A> | <A HREF="#prod16">PDeclFuncao</A> ) &lt;COMMA&gt; <A HREF="#prod18">PDeclFuncional</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod13">PDeclVar</A> | <A HREF="#prod14">PDeclFuncao</A> ) &lt;COMMA&gt; <A HREF="#prod17">PDeclFuncional</A></TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod18">PDeclFuncional</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod17">PDeclFuncional</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod17">PDecComposta</A> | <A HREF="#prod17">PDecComposta</A> | <A HREF="#prod15">PDeclVar</A> | <A HREF="#prod16">PDeclFuncao</A> | &lt;LPAREN&gt; <A HREF="#prod18">PDeclFuncional</A> &lt;RPAREN&gt; )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod16">PDecComposta</A> | <A HREF="#prod16">PDecComposta</A> | <A HREF="#prod13">PDeclVar</A> | <A HREF="#prod14">PDeclFuncao</A> | &lt;LPAREN&gt; <A HREF="#prod17">PDeclFuncional</A> &lt;RPAREN&gt; )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod19">PExpDeclaracao</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod18">PExpDeclaracao</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>&lt;LET&gt; <A HREF="#prod18">PDeclFuncional</A> &lt;IN&gt; <A HREF="#prod8">PExpressao</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;LET&gt; <A HREF="#prod17">PDeclFuncional</A> &lt;IN&gt; <A HREF="#prod12">PExpressao</A></TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod20">PExpCondicional</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod19">PExpCondicional</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>&lt;IF&gt; <A HREF="#prod8">PExpressao</A> &lt;THEN&gt; <A HREF="#prod8">PExpressao</A> &lt;ELSE&gt; <A HREF="#prod8">PExpressao</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;IF&gt; <A HREF="#prod12">PExpressao</A> &lt;THEN&gt; <A HREF="#prod12">PExpressao</A> &lt;ELSE&gt; <A HREF="#prod12">PExpressao</A></TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod21">PAplicacao</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod20">PAplicacao</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod10">PId</A> &lt;LPAREN&gt; &lt;RPAREN&gt; | <A HREF="#prod10">PId</A> &lt;LPAREN&gt; <A HREF="#prod22">PListaExpr</A> &lt;RPAREN&gt; )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod7">PId</A> &lt;LPAREN&gt; &lt;RPAREN&gt; | <A HREF="#prod7">PId</A> &lt;LPAREN&gt; <A HREF="#prod21">PListaExpr</A> &lt;RPAREN&gt; )</TD>
 </TR>
  <!-- Special token -->
  <TR>
@@ -571,9 +537,9 @@
   </TD>
  </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod23">PParametro</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod22">PParametro</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod24">PParametroOpcional</A> | <A HREF="#prod25">PParametroObrigatorio</A> )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod23">PParametroOpcional</A> | <A HREF="#prod24">PParametroObrigatorio</A> )</TD>
 </TR>
  <!-- Special token -->
  <TR>
@@ -585,9 +551,9 @@
   </TD>
  </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod25">PParametroObrigatorio</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod24">PParametroObrigatorio</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod10">PId</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod7">PId</A></TD>
 </TR>
  <!-- Special token -->
  <TR>
@@ -599,9 +565,9 @@
   </TD>
  </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod24">PParametroOpcional</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod23">PParametroOpcional</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod10">PId</A> &lt;HOOK&gt; &lt;LPAREN&gt; <A HREF="#prod8">PExpressao</A> &lt;RPAREN&gt;</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod7">PId</A> &lt;HOOK&gt; &lt;LPAREN&gt; <A HREF="#prod12">PExpressao</A> &lt;RPAREN&gt;</TD>
 </TR>
  <!-- Special token -->
  <TR>
@@ -614,44 +580,44 @@
   </TD>
  </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod7">PListaParametro</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod15">PListaParametro</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod23">PParametro</A> )+</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod22">PParametro</A> )+</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod22">PListaExpr</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod21">PListaExpr</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod8">PExpressao</A> ( &lt;COMMA&gt; <A HREF="#prod8">PExpressao</A> )* )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod12">PExpressao</A> ( &lt;COMMA&gt; <A HREF="#prod12">PExpressao</A> )* )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod26">PExpUnaria</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod25">PExpUnaria</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod11">PExpMenos</A> | <A HREF="#prod13">PExpNot</A> | <A HREF="#prod14">PExpLength</A> | <A HREF="#prod19">PExpDeclaracao</A> | <A HREF="#prod20">PExpCondicional</A> | <A HREF="#prod21">PAplicacao</A> | <A HREF="#prod12">PExpPrimaria</A> )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod8">PExpMenos</A> | <A HREF="#prod10">PExpNot</A> | <A HREF="#prod11">PExpLength</A> | <A HREF="#prod18">PExpDeclaracao</A> | <A HREF="#prod19">PExpCondicional</A> | <A HREF="#prod20">PAplicacao</A> | <A HREF="#prod9">PExpPrimaria</A> )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod27">PExpBinaria</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod26">PExpBinaria</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod28">PExpBinaria2</A> ( &lt;EQ&gt; <A HREF="#prod28">PExpBinaria2</A> | &lt;LPAREN&gt; ( <A HREF="#prod22">PListaExpr</A> )? &lt;RPAREN&gt; )* )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod27">PExpBinaria2</A> ( &lt;EQ&gt; <A HREF="#prod27">PExpBinaria2</A> )* )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod28">PExpBinaria2</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod27">PExpBinaria2</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod29">PExpBinaria3</A> ( &lt;PLUS&gt; <A HREF="#prod29">PExpBinaria3</A> | &lt;MINUS&gt; <A HREF="#prod29">PExpBinaria3</A> | &lt;OR&gt; <A HREF="#prod29">PExpBinaria3</A> | &lt;CONCAT&gt; <A HREF="#prod29">PExpBinaria3</A> )* )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod28">PExpBinaria3</A> ( &lt;PLUS&gt; <A HREF="#prod28">PExpBinaria3</A> | &lt;MINUS&gt; <A HREF="#prod28">PExpBinaria3</A> | &lt;OR&gt; <A HREF="#prod28">PExpBinaria3</A> | &lt;CONCAT&gt; <A HREF="#prod28">PExpBinaria3</A> )* )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod29">PExpBinaria3</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod28">PExpBinaria3</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod26">PExpUnaria</A> ( &lt;AND&gt; <A HREF="#prod26">PExpUnaria</A> )* )</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod25">PExpUnaria</A> ( &lt;AND&gt; <A HREF="#prod25">PExpUnaria</A> )* )</TD>
 </TR>
 <TR>
-<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod8">PExpressao</A></TD>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod12">PExpressao</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod27">PExpBinaria</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod26">PExpBinaria</A></TD>
 </TR>
 <TR>
 <TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod2">PPrograma</A></TD>
 <TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
-<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod8">PExpressao</A></TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod12">PExpressao</A></TD>
 </TR>
 </TABLE>
 </BODY>
