@@ -34,6 +34,7 @@
 			<item name="Projeto" href="index.html" />
 			<item name="BNF" href="bnf.html" />
 			<item name="Gramática JavaCC" href="jjdoc/index.html" />
+			<item name="Slides" href="https://docs.google.com/presentation/d/1Pb0hrHNTp-KSgiCw7io2ZlQeYakQCfIfzsrDbpknP34/edit?usp=sharing" />
 		</menu>
 		
 		<menu name="Development">
