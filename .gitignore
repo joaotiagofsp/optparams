@@ -107,7 +107,6 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 ### Auto generated
-src/main/java/plp/optparam/parser
 
 # Eclipse m2e generated files
 # Eclipse Core

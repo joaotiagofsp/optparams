@@ -33,7 +33,7 @@ DeclaracaoFuncional ::= [DecVariavel](https://raw.githubusercontent.com/joaotiag
 
 DecVariavel ::= "var" Id "=" Expressao
 
-DecFuncao ::= "fun" ListaParametro "=" Expressao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
+DecFuncao ::= "fun" ListaParametro "=" Expressao 
 
 DecComposta ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
