@@ -81,7 +81,41 @@
 <pre><code>let fun soma a b?(1) = a + b in soma(1)
 </code></pre></div>
 <p>O bloco <code>?(1)</code> define o par&#xe2;metro <code>b</code> da fun&#xe7;&#xe3;o <code>soma</code> como <em>opcional</em>.</p>
-<p>A string dentro dos par&#xea;ntesis <code>(1)</code> define o valor padr&#xe3;o atribu&#xed;do ao par&#xe2;metro, caso um valor n&#xe3;o seja expressamente informado na chamada da fun&#xe7;&#xe3;o.</p></section></section></section>
+<p>A string dentro dos par&#xea;ntesis <code>(1)</code> define o valor padr&#xe3;o atribu&#xed;do ao par&#xe2;metro, caso um valor n&#xe3;o seja expressamente informado na chamada da fun&#xe7;&#xe3;o.</p></section><section>
+<h3>Exemplos de uso</h3>
+<ol style="list-style-type: decimal">
+
+<li>Fun&#xe7;&#xe3;o <code>soma</code> com 3 par&#xe2;metros: <code>x</code>, <code>y</code> e <code>z</code>, sendo <code>y</code> e <code>z</code> opcionais e com valores padr&#xf5;es:</li>
+</ol>
+
+<div class="verbatim">
+<pre><code>let fun soma x y?(0) z?(2) = x + y + z in soma(1, 3)
+
+OptParam Parser Parser v.0.0.1:  Programa analisado com sucesso
+OptParam Parser v.0.0.1:  Resultado do programa = 6
+</code></pre></div>
+<ol style="list-style-type: decimal">
+
+<li>Testando a checagem de Tipo na fun&#xe7;&#xe3;o <code>soma</code> com 3 par&#xe2;metros: <code>x</code>, <code>y</code> e <code>z</code>, sendo <code>y</code> e <code>z</code> opcionais e com valores padr&#xf5;es.</li>
+</ol>
+
+<div class="verbatim">
+<pre><code>let fun soma x y?(0) z?(2) = x + y + z in soma(1, &quot;teste&quot;)
+
+OptParam Parser Parser v.0.0.1:  Programa analisado com sucesso
+OptParam Parser v.0.0.1: Erro de tipo
+</code></pre></div>
+<ol style="list-style-type: decimal">
+
+<li>Fun&#xe7;&#xe3;o <code>concat</code> com 2 par&#xe2;metros: <code>x</code> e <code>y</code>, sendo <code>y</code> opcional e com valor padr&#xe3;o.</li>
+</ol>
+
+<div class="verbatim">
+<pre><code>let fun concat x y?(&quot;-padrao&quot;) = x ++ y in concat(&quot;1&quot;)
+
+OptParam Parser Parser v.0.0.1:  Programa analisado com sucesso
+OptParam Parser v.0.0.1:  Resultado do programa = &quot;1-padrao&quot;
+</code></pre></div></section></section></section>
         </main>
       </div>
     </div>
