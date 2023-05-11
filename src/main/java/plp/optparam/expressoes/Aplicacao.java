@@ -75,10 +75,6 @@ public class Aplicacao implements Expressao {
 
 			result = tipoFuncao.checaTipo(ambiente, argsExpressao);
 		} else {
-			// A funcao func nao foi declarada.
-
-			// TODO: lancar uma excecao ou separar variaveis de funcoes no
-			// contexto de compilacao.
 
 			result = false;
 		}
