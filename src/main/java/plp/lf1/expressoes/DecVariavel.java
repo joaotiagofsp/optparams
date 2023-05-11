@@ -8,14 +8,9 @@ import plp.le1.util.Tipo;
 import plp.le2.excecoes.VariavelJaDeclaradaException;
 import plp.le2.excecoes.VariavelNaoDeclaradaException;
 import plp.le2.expressoes.Id;
-import plp.le2.expressoes.ValorFuncao;
 import plp.le2.memoria.AmbienteCompilacao;
-import plp.le2.memoria.AmbienteExecucao;
-
-/**
- * Modificado para utilizar: AmbienteExecucao, ValorFuncao.
- * @author <a href="mailto:ctm@cin.ufpe.br">Cleber Moura</a>
- */
+import plp.lf1.memoria.AmbienteExecucaoFuncional;
+import plp.optparam.util.DefFuncao;
 
 public class DecVariavel implements DeclaracaoFuncional {
 	private Id id;
@@ -52,30 +47,22 @@ public class DecVariavel implements DeclaracaoFuncional {
 		return new DecVariavel(this.id.clone(), this.expressao.clone());
 	}
 
-
-	public void elabora(AmbienteExecucao amb, Map<Id, Valor> declaracoes, Map<Id, ValorFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
-		declaracoes.put(getId(), getExpressao().avaliar(amb));
-	}
-
-
 	public void elabora(AmbienteCompilacao amb, Map<Id, Tipo> tipos) throws VariavelJaDeclaradaException {
 		tipos.put(getId(), getTipo(amb));
 	}
-
-
-	public void incluir(AmbienteExecucao amb, Map<Id, Valor> declaracoes,
-			Map<Id, ValorFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
-		amb.map(getId(), declaracoes.get(getId()));
-	}
-
 
 	public void incluir(AmbienteCompilacao amb, Map<Id, Tipo> tipos, boolean incluirCuringa) throws VariavelJaDeclaradaException {
 		amb.map(getId(), tipos.get(getId()));
 	}
 
+	public void elabora(AmbienteExecucaoFuncional amb, Map<Id, Valor> declaracoes,
+			Map<Id, DefFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
+		declaracoes.put(getId(), getExpressao().avaliar(amb));
+	}
 
-	public void reduzir(AmbienteExecucao amb) {
-		amb.map(getId(), null);
+	public void incluir(AmbienteExecucaoFuncional amb, Map<Id, Valor> declaracoes,
+			Map<Id, DefFuncao> declaracoesFuncoes) throws VariavelJaDeclaradaException {
+		amb.map(getId(), declaracoes.get(getId()));
 	}
 
 }
