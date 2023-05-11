@@ -19,69 +19,61 @@ let fun soma a(1) b(2) = a + b
 Os blocos ``(1)`` e ``(2)`` tornam os parâmetros da função opcionais e definem o valor default caso um valor não seja expressamente informado na chamada da função.
 
 ## BNF
-[Programa](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/Programa.java) ::= Expressao
+[Programa](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/Programa.java) ::= [Expressao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Expressao.java)
 
-[Expressao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Expressao.java) ::= Valor <br />
->	| ExpUnaria <br />
->	| ExpBinaria <br />
->	| ExpDeclaracao <br />
+Expressao ::= [Valor](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Valor.java) <br />
+>	| [ExpUnaria](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ExpUnaria.java) <br />
+>	| [ExpBinaria](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ExpBinaria.java) <br />
+>	| [ExpDeclaracao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/ExpDeclaracao.java) <br />
 >	| [Id](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le2/expressoes/Id.java) <br />
->	| Aplicacao <br />
->	| IfThenElse <br />
+>	| [Aplicacao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/optparam/expressoes/Aplicacao.java) <br />
+>	| [IfThenElse](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/IfThenElse.java) <br />
 
-[ExpUnaria](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ExpUnaria.java) ::= "-" Expressao <br />
+Valor ::= [ValorConcreto](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ValorConcreto.java)
+
+ValorConcreto ::= [ValorInteiro](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ValorInteiro.java) | [ValorBooleano](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ValorBooleano.java) | [ValorString](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ValorString.java) <br />
+
+ExpUnaria ::= "-" Expressao <br />
 >	| "not" Expressao <br />
 >	| "length" Expressao <br />
 
-[ExpBinaria](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ExpBinaria.java) ::= Expressao "+" Expressao <br />
+ExpBinaria ::= Expressao "+" Expressao <br />
 >	| Expressao "-" Expressao <br />
 >	| Expressao "and" Expressao <br />
 >	| Expressao "or" Expressao <br />
 >	| Expressao "==" Expressao <br />
 >	| Expressao "++" Expressao <br />
 
-[ExpDeclaracao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/ExpDeclaracao.java) ::= "let" DeclaracaoFuncional "in" Expressao
+ExpDeclaracao ::= "let" [DeclaracaoFuncional](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/DeclaracaoFuncional.java) "in" Expressao
 
-[Valor](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Valor.java) ::= ValorConcreto
-> | ValorAbstrato
 
-[ValorAbstrato](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le2/expressoes/ValorAbstrato.java) ::= ValorFuncao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
+DeclaracaoFuncional ::= [DecVariavel](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/DecVariavel.java) <br />
+>	| [DecFuncao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/optparam/expressoes/DecFuncao.java) <br />
+>	| [DecComposta](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/DecComposta.java)
 
-[ValorFuncao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/plp/le2/expressoes/ValorFuncao.java) ::= "fn" ListParametro "." Expressao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
+DecVariavel ::= "var" Id "=" Expressao
 
-[ValorConcreto](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ValorConcreto.java) ::= [ValorInteiro](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ValorInteiro.java) <br />
->	| [ValorBooleano](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ValorBooleano.java) <br />
->	| [ValorString](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ValorString.java) <br />
+DecFuncao ::= "fun" ListaParametro "=" Expressao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
 
-[DeclaracaoFuncional](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/DeclaracaoFuncional.java) ::= DecVariavel <br />
->	| DecFuncao <br />
->	| DecComposta
+DecComposta ::= DeclaracaoFuncional "," DeclaracaoFuncional
 
-[DecVariavel](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/DecVariavel.java) ::= "var" Id "=" Expressao
+ListaParametro ::= [Parametro](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Parametro.java) <br />
+>	| Parametro ListaParametro
 
-[DecFuncao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/optparam/expressoes/DecFuncao.java) ::= "fun" ListParametro "=" Expressao <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
+Parametro ::= [ParametroObrigatorio](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) <br />
+>	| [ParametroOpcional](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ParametroOpcional.java)
 
-[DecComposta](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/DecComposta.java) ::= DeclaracaoFuncional "," DeclaracaoFuncional
+ParametroObrigatorio ::= Id
 
-[Parametro](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/Parametro.java) ::= ParametroObrigatorio <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/> <br />
->	| ParametroOpcional
+ParametroOpcional ::= Id "?" "(" Expressao ")"
 
-[ParametroObrigatorio](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ParametroObrigatorio.java) ::= Id <img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/> 
-
-[ParametroOpcional](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/le1/expressoes/ParametroOpcional.java) ::= Id "?" "(" Expressao ")"	<img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/>
-
-ListId ::= Id <br />
->	| Id ListId
-
-[Aplicacao](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/optparam/expressoes/Aplicacao.java) ::= Id"(" ListExp ")"
+Aplicacao ::= Id"(" ListExp ")"
 
 ListExp ::= Expressao <br />
 >	| Expressao, ListExp
 
-ListParametro ::= Parametro	<img src="https://icones.pro/wp-content/uploads/2021/04/nouveau-symbole-vert.png" width="18" height="18"/> <br />
->	| Parametro ListParametro
+IfThenElse ::= "if" Expressao "then" Expressao "else" Expressao
 
-[IfThenElse](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/IfThenElse.java) ::= "if" Expressao "then" Expressao "else" Expressao
 
 ## Extensões realizadas em LF1
 1. Reutilização do código base de classes da LF1:
