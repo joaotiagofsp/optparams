@@ -84,16 +84,15 @@ ListParametro ::= Parametro	<img src="https://icones.pro/wp-content/uploads/2021
 [IfThenElse](https://raw.githubusercontent.com/joaotiagofsp/optparams/main/src/main/java/plp/lf1/expressoes/IfThenElse.java) ::= "if" Expressao "then" Expressao "else" Expressao
 
 ## Extensões realizadas em LF1
-1. Reutilização do código base de classes da LF2:
-* Interface ```ValorAbstrato```
-* Classe ```ValorFuncao```
+1. Reutilização do código base de classes da LF1:
 2. Implementação da classe abstrata ```Parametro```
-3. Implementação das classes ```ParametroObrigatorio``` e ```ParametroOpcional```
+3. Implementação das classes concretas ```ParametroObrigatorio``` e ```ParametroOpcional``` que herdam da classe ```Parametro```
 4. Implementação da classe ```ParametroObrigatorioAposOpcionalException```
-5. Alterações na classe ```ValorFuncao```: métodos ```reduzir( )``` e ```clone( )```
-6. Alterações na classe ```DefFuncao```: método ```checaTipo( )``` e ```checaTipoParametrosOpcionais( )```
+6. Alterações na classe ```DefFuncao```:
+* Lista de parâmetros com tipo genérico ```Parametro```;
+* método ```checaTipo( )``` e ```checaTipoParametrosOpcionais( )``` para suportar os parâmetros opcionais;
 7. Alterações diversas na classe ```TipoFuncao```
-8. Alterações na classe ```Aplicacao```: método ```avaliar( )```, ```checaTipo( )```, ```resolveParametersBindings( )```, ```getFuncType( )``` e ```reduzir( )```
+8. Alterações na classe ```Aplicacao```: método ```avaliar( )```, ```checaTipo( )``` e ```resolveParametersBindings( )```
 9. Alterações na Gramática (arquivo .jj):
 * ```PValor( )```
 * ```PDeclFuncao( )```
@@ -113,7 +112,7 @@ Disponível [aqui](https://docs.google.com/presentation/d/1Pb0hrHNTp-KSgiCw7io2Z
 Para publicação do site, execute o seguinte comando:
 
 ```
-clean site site:stage scm-publish:publish-scm
+mvn clean site site:stage scm-publish:publish-scm
 ```
 
 O site será publicado no endereço: [https://joaotiagofsp.github.io/optparams](https://joaotiagofsp.github.io/optparams)
