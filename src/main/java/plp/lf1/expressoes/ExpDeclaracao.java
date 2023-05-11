@@ -9,14 +9,11 @@ import plp.le1.util.Tipo;
 import plp.le2.excecoes.VariavelJaDeclaradaException;
 import plp.le2.excecoes.VariavelNaoDeclaradaException;
 import plp.le2.expressoes.Id;
-import plp.le2.expressoes.ValorFuncao;
 import plp.le2.memoria.AmbienteCompilacao;
 import plp.le2.memoria.AmbienteExecucao;
+import plp.lf1.memoria.AmbienteExecucaoFuncional;
+import plp.optparam.util.DefFuncao;
 
-/**
- * Modificado para utilizar: AmbienteExecucao, ValorFuncao.
- * @author <a href="mailto:ctm@cin.ufpe.br">Cleber Moura</a>
- */
 public class ExpDeclaracao implements Expressao {
 
 	DeclaracaoFuncional declaracao;
@@ -31,11 +28,12 @@ public class ExpDeclaracao implements Expressao {
 		return expressao;
 	}
 
-	public Valor avaliar(AmbienteExecucao amb)
+	public Valor avaliar(AmbienteExecucao ambienteFuncional)
 			throws VariavelNaoDeclaradaException, VariavelJaDeclaradaException {
+		AmbienteExecucaoFuncional amb = (AmbienteExecucaoFuncional) ambienteFuncional;
 		amb.incrementa();
 		Map<Id, Valor> declaracoes = new HashMap<Id, Valor>();
-		Map<Id, ValorFuncao> declaracoesFuncoes = new HashMap<Id, ValorFuncao>();
+		Map<Id, DefFuncao> declaracoesFuncoes = new HashMap<Id, DefFuncao>();
 		declaracao.elabora(amb, declaracoes, declaracoesFuncoes);
 		declaracao.incluir(amb, declaracoes, declaracoesFuncoes);
 		Valor vresult = expressao.avaliar(amb);

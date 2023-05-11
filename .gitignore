@@ -106,6 +106,9 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
+### Auto generated
+src/main/java/plp/optparam/parser
+
 # Eclipse m2e generated files
 # Eclipse Core
 .project
