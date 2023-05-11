@@ -96,7 +96,6 @@ ListParametro ::= Parametro	<img src="https://icones.pro/wp-content/uploads/2021
 8. Alterações na classe ```Aplicacao```: método ```avaliar( )```, ```checaTipo( )```, ```resolveParametersBindings( )```, ```getFuncType( )``` e ```reduzir( )```
 9. Alterações na Gramática (arquivo .jj):
 * ```PValor( )```
-* ```PValorFuncao( )```
 * ```PDeclFuncao( )```
 * ```PAplicacao( )```
 * ```PParametro( )```
@@ -104,7 +103,6 @@ ListParametro ::= Parametro	<img src="https://icones.pro/wp-content/uploads/2021
 * ```PParametroOpcional( )```
 * ```PListaParametro( )```
 * ```PListaExpr( )```
-* ```PListaExpBinaria( )```
 
 ## Slides da apresentação
 
