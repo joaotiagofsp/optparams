@@ -26,17 +26,17 @@ import plp.lf1.util.TipoPolimorfico;
  */
 public class DefFuncao {
 	
-	protected List<Parametro> parametros;
+	protected List<Parametro> listaParametros;
 
 	protected Expressao exp;
 
 	public DefFuncao(List<Parametro> parametros, Expressao exp) {
-		this.parametros = parametros;
+		this.listaParametros = parametros;
 		this.exp = exp;
 	}
 
 	public List<Parametro> getListaParametros() {
-		return parametros;
+		return listaParametros;
 	}
 
 	public Expressao getExp() {
@@ -44,7 +44,7 @@ public class DefFuncao {
 	}
 
 	public int getAridade() {
-		return parametros.size();
+		return listaParametros.size();
 	}
 
 	public boolean checaTipo(AmbienteCompilacao ambiente)
@@ -55,7 +55,7 @@ public class DefFuncao {
 
 		// Usa uma instância de TipoPolimorfico para cada parâmetro formal.
 		// Essa instância será inferida durante o getTipo de exp.
-		for (Parametro param : parametros) {
+		for (Parametro param : listaParametros) {
 			Id id = param.getParamId();
 			ambiente.map(id, new TipoPolimorfico());
 			
@@ -72,7 +72,7 @@ public class DefFuncao {
 		boolean result = exp.checaTipo(ambiente);
 		
 		Map<Parametro, Tipo> auxMap = new HashMap<Parametro, Tipo>();
-		for (Parametro arg : parametros) {
+		for (Parametro arg : listaParametros) {
 			auxMap.put(arg, ambiente.get(arg.getParamId()));
 		}
 		
@@ -89,7 +89,7 @@ public class DefFuncao {
 		boolean result = true;
 		ambiente.incrementa();
 		
-		for (Parametro param : parametros) {
+		for (Parametro param : listaParametros) {
 			if (param instanceof ParametroOpcional) {
 				ParametroOpcional paramOpcional = (ParametroOpcional) param;
 				Expressao valorPadrao = paramOpcional.getValorPadrao();
@@ -116,7 +116,7 @@ public class DefFuncao {
 			throws VariavelNaoDeclaradaException, VariavelJaDeclaradaException {
 		ambiente.incrementa();
 
-		for (Parametro param : parametros) {
+		for (Parametro param : listaParametros) {
 			Id id = param.getParamId();
 			ambiente.map(id, new TipoPolimorfico());
 		}
@@ -134,7 +134,7 @@ public class DefFuncao {
 		List<Tipo> params = new ArrayList<Tipo>(getAridade());
 		Tipo argTipo;
 		for (int i = 0; i < getAridade(); i++) {
-			argTipo = ((TipoPolimorfico) ambiente.get(parametros.get(i).getParamId())).inferir();
+			argTipo = ((TipoPolimorfico) ambiente.get(listaParametros.get(i).getParamId())).inferir();
 			params.add(argTipo);
 		}
 		result = new TipoFuncao(params, result, getAridadeRequerido());
@@ -147,7 +147,7 @@ public class DefFuncao {
 	public int getAridadeRequerido() {
 		int aridadeRequerido = 0;
 		
-		for (Parametro param : parametros) {
+		for (Parametro param : listaParametros) {
 			if (param instanceof ParametroObrigatorio) {
 				aridadeRequerido++;
 			}
@@ -157,9 +157,9 @@ public class DefFuncao {
 	}
 
 	public DefFuncao clone() {
-		List<Parametro> novaLista = new ArrayList<Parametro>(this.parametros.size());
+		List<Parametro> novaLista = new ArrayList<Parametro>(this.listaParametros.size());
 		
-		for (Parametro param : this.parametros){
+		for (Parametro param : this.listaParametros){
 			novaLista.add(param.clone());
 		}
 		

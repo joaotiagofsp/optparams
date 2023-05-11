@@ -32,9 +32,9 @@ public class DecFuncao implements DeclaracaoFuncional {
 
 	private DefFuncao funcao;
 
-	public DecFuncao(Id idFun, List<Parametro> args, Expressao exp) {
+	public DecFuncao(Id idFun, List<Parametro> parametros, Expressao exp) {
 		this.id = idFun;
-		this.funcao = new DefFuncao(args, exp);
+		this.funcao = new DefFuncao(parametros, exp);
 	}
 
 	public Id getId() {
